@@ -24,7 +24,7 @@ msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title=
 
 #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
 tkinter.Tk().withdraw()
-if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.') == True:
+if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-msfs2020-airac-cycle-2310-rev-1.rar"') == True:
     msfs_native_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(MSFS Native)")
     msfs_native_nav_rar_basename = os.path.basename(msfs_native_nav_rar)
     if 'navigraph-navdata-msfs2020-airac-cycle-' in msfs_native_nav_rar_basename:
@@ -70,7 +70,7 @@ else:
     sys.exit()
 
 tkinter.Tk().withdraw()
-if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.') == True:
+if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
     
     pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
     pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
