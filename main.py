@@ -78,12 +78,12 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         
         pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1"
         pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2"
-        pmdg_nav_NavData = pmdg_nav_output_ph2 + r".\NavData"
-        pmdg_nav_SidStars = pmdg_nav_output_ph2 + r".\SidStars"
-        pmdg_config_route_736 = msfs_community + r".\pmdg-aircraft-736\Config"
-        pmdg_config_route_737 = msfs_community + r".\pmdg-aircraft-737\Config"
-        pmdg_config_route_738 = msfs_community + r".\pmdg-aircraft-738\Config"
-        pmdg_config_route_739 = msfs_community + r".\pmdg-aircraft-739\Config"
+        pmdg_nav_NavData = pmdg_nav_output_ph2 + r"\NavData"
+        pmdg_nav_SidStars = pmdg_nav_output_ph2 + r"\SidStars"
+        pmdg_config_route_736 = msfs_community + r"\pmdg-aircraft-736\Config"
+        pmdg_config_route_737 = msfs_community + r"\pmdg-aircraft-737\Config"
+        pmdg_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
+        pmdg_config_route_739 = msfs_community + r"\pmdg-aircraft-739\Config"
 
         print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
     
