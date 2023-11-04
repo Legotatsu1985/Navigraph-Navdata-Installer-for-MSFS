@@ -84,14 +84,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
 
     if os.path.exists(pmdg_nav_output_ph2):
         shutil.rmtree(pmdg_nav_output_ph2)
-
-    msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-
-    tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.')
-    pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
-
-    print("Decompressing file. Please wait...")
-
+    
     rarfile.UNRAR_TOOL=r".\UnRAR.exe"
 
     rf2 = rarfile.RarFile(pmdg_nav_rar)
