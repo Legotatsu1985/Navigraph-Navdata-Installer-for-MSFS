@@ -16,9 +16,8 @@ pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar'
 print(pmdg_nav_rar)
 
 pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
-print(pmdg_nav_rar_basename)
 
-if glob.glob(pmdg_nav_rar_basename,r"navigraph-navdata-installers-airac-cycle-*.rar") == True:
+if 'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
     print("Valid")
 else:
-    pring("Invalid")
+    print("Invalid")
