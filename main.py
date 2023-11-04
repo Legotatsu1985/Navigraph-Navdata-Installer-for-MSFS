@@ -87,24 +87,24 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
 
         print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
     
-        if os.path.exists(pmdg_nav_output_ph1):
-            shutil.rmtree(pmdg_nav_output_ph1)
+        #if os.path.exists(pmdg_nav_output_ph1):
+            #shutil.rmtree(pmdg_nav_output_ph1)
 
-        if os.path.exists(pmdg_nav_output_ph2):
-            shutil.rmtree(pmdg_nav_output_ph2)
+        #if os.path.exists(pmdg_nav_output_ph2):
+            #shutil.rmtree(pmdg_nav_output_ph2)
 
-        rarfile.UNRAR_TOOL=r".\UnRAR.exe"
+        #rarfile.UNRAR_TOOL=r".\UnRAR.exe"
 
-        rf2 = rarfile.RarFile(pmdg_nav_rar)
-        rf2.extractall("pmdg_nav_output_ph1")
+        #rf2 = rarfile.RarFile(pmdg_nav_rar)
+        #rf2.extractall("pmdg_nav_output_ph1")
 
-        for pmdg_nav_final_output in glob.glob(r".\pmdg_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
-            print(pmdg_nav_final_output)
+        #for pmdg_nav_final_output in glob.glob(r".\pmdg_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
+            #print(pmdg_nav_final_output)
 
-        rf3 = rarfile.RarFile(pmdg_nav_final_output)
-        rf3.extractall("pmdg_nav_output_ph2")
+        #rf3 = rarfile.RarFile(pmdg_nav_final_output)
+        #rf3.extractall("pmdg_nav_output_ph2")
 
-        shutil.rmtree(pmdg_nav_output_ph1)
+        #shutil.rmtree(pmdg_nav_output_ph1)
     
         print("Decompression complete.")
     
