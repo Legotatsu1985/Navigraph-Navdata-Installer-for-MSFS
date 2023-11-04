@@ -21,8 +21,6 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select
     sys.exit()
 
 msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-if 'Community' in msfs_community == False:
-    sys.exit()
 
 #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
 tkinter.Tk().withdraw()
