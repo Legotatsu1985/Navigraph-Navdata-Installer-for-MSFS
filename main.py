@@ -27,7 +27,7 @@ tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.') == True:
     msfs_native_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(MSFS Native)")
 
-    print("Decompressing file. Please wait...")
+    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
 
     rarfile.UNRAR_TOOL=r".\UnRAR.exe"#解凍ツール選択（同フォルダに格納済み）
 
@@ -64,6 +64,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use
 else:
     sys.exit()
 
+tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.') == True:
     pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
     
@@ -76,7 +77,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
     pmdg_config_route_738 = msfs_community + r".\pmdg-aircraft-738\Config"
     pmdg_config_route_739 = msfs_community + r".\pmdg-aircraft-739\Config"
 
-    print("Decompressing file. Please wait...")
+    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
     
     if os.path.exists(pmdg_nav_output_ph1):
         shutil.rmtree(pmdg_nav_output_ph1)
