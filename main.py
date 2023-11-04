@@ -26,7 +26,7 @@ msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title=
 tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.') == True:
     msfs_native_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(MSFS Native)")
-
+    
     print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
 
     rarfile.UNRAR_TOOL=r".\UnRAR.exe"#解凍ツール選択（同フォルダに格納済み）
@@ -84,7 +84,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
 
     if os.path.exists(pmdg_nav_output_ph2):
         shutil.rmtree(pmdg_nav_output_ph2)
-    
+
     rarfile.UNRAR_TOOL=r".\UnRAR.exe"
 
     rf2 = rarfile.RarFile(pmdg_nav_rar)
@@ -110,8 +110,8 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         elif os.path.exists(pmdg_config_route_736 + r".\SIDSTARS"):
             shutil.rmtree(pmdg_config_route_736 + r".\SIDSTARS")
         
-        shutil.move(pmdg_nav_NavData, pmdg_config_route_736)
-        shutil.move(pmdg_nav_SidStars, pmdg_config_route_736)
+        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736)
+        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736)
     else:
         print("PMDG B736 Not found in your community folder. We will skip this nav update.")
     
@@ -124,8 +124,8 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         elif os.path.exists(pmdg_config_route_737 + r".\SIDSTARS"):
             shutil.rmtree(pmdg_config_route_737 + r".\SIDSTARS")
         
-        shutil.move(pmdg_nav_NavData, pmdg_config_route_737)
-        shutil.move(pmdg_nav_SidStars, pmdg_config_route_737)
+        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737)
+        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737)
     else:
         print("PMDG B737 Not found in your community folder. We will skip this nav update.")
     
@@ -138,8 +138,8 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         elif os.path.exists(pmdg_config_route_738 + r".\SIDSTARS"):
             shutil.rmtree(pmdg_config_route_738 + r".\SIDSTARS")
         
-        shutil.move(pmdg_nav_NavData, pmdg_config_route_738)
-        shutil.move(pmdg_nav_SidStars, pmdg_config_route_738)
+        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738)
+        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738)
     else:
         print("PMDG B738 Not found in your community folder. We will skip this nav update.")
     
@@ -152,7 +152,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         elif os.path.exists(pmdg_config_route_739 + r".\SIDSTARS"):
             shutil.rmtree(pmdg_config_route_739 + r".\SIDSTARS")
         
-        shutil.move(pmdg_nav_NavData, pmdg_config_route_739)
-        shutil.move(pmdg_nav_SidStars, pmdg_config_route_739)
+        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739)
+        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739)
     else:
         print("PMDG B739 Not found in your community folder. We will skip this nav update.")
