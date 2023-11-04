@@ -15,3 +15,5 @@ tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To 
 pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
 print(pmdg_nav_rar)
 
+pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
+print(pmdg_nav_rar_basename)
