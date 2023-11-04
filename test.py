@@ -17,3 +17,8 @@ print(pmdg_nav_rar)
 
 pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
 print(pmdg_nav_rar_basename)
+
+if pmdg_nav_rar == glob.glob(r"navigraph-navdata-installers-airac-cycle-*.rar"):
+    print("Valid")
+else:
+    print("Invalid")
