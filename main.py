@@ -78,12 +78,12 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         
         pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1"
         pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2"
-        pmdg_nav_NavData = pmdg_nav_output_ph2 + r"\NavData"
-        pmdg_nav_SidStars = pmdg_nav_output_ph2 + r"\SidStars"
-        pmdg_config_route_736 = msfs_community + r"\pmdg-aircraft-736\Config"
-        pmdg_config_route_737 = msfs_community + r"\pmdg-aircraft-737\Config"
-        pmdg_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
-        pmdg_config_route_739 = msfs_community + r"\pmdg-aircraft-739\Config"
+        pmdg_nav_NavData = pmdg_nav_output_ph2 + r".\NavData"
+        pmdg_nav_SidStars = pmdg_nav_output_ph2 + r".\SidStars"
+        pmdg_config_route_736 = msfs_community + r".\pmdg-aircraft-736\Config"
+        pmdg_config_route_737 = msfs_community + r".\pmdg-aircraft-737\Config"
+        pmdg_config_route_738 = msfs_community + r".\pmdg-aircraft-738\Config"
+        pmdg_config_route_739 = msfs_community + r".\pmdg-aircraft-739\Config"
 
         print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
     
@@ -110,7 +110,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
     
         print("Installing Navdata...")
         if os.path.exists(msfs_community + r".\pmdg-aircraft-736"):
-            print("PMDG B736 Found" + (msfs_community + r".\pmdg-aircraft-736"))
+            print("PMDG B736 Found",(msfs_community + r".\pmdg-aircraft-736"))
             shutil.rmtree(pmdg_config_route_736 + r".\NavData")
         
             if os.path.exists(pmdg_config_route_736 + r".\SidStars"):
@@ -118,13 +118,13 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
             elif os.path.exists(pmdg_config_route_736 + r".\SIDSTARS"):
                 shutil.rmtree(pmdg_config_route_736 + r".\SIDSTARS")
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736)
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736)
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + r".\NavData")
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + r".\SidStars")
         else:
             print("PMDG B736 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-737"):
-            print("PMDG B737 Found" + (msfs_community + r".\pmdg-aircraft-737"))
+            print("PMDG B737 Found",(msfs_community + r".\pmdg-aircraft-737"))
             shutil.rmtree(pmdg_config_route_737 + r".\NavData")
         
             if os.path.exists(pmdg_config_route_737 + r".\SidStars"):
@@ -132,13 +132,13 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
             elif os.path.exists(pmdg_config_route_737 + r".\SIDSTARS"):
                 shutil.rmtree(pmdg_config_route_737 + r".\SIDSTARS")
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737)
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737)
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + r".\NavData")
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + r".\SidStars")
         else:
             print("PMDG B737 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-738"):
-            print("PMDG B738 Found" + (msfs_community + r".\pmdg-aircraft-738"))
+            print("PMDG B738 Found",(msfs_community + r".\pmdg-aircraft-738"))
             shutil.rmtree(pmdg_config_route_738 + r".\NavData")
         
             if os.path.exists(pmdg_config_route_738 + r".\SidStars"):
@@ -146,13 +146,13 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
             elif os.path.exists(pmdg_config_route_738 + r".\SIDSTARS"):
                 shutil.rmtree(pmdg_config_route_738 + r".\SIDSTARS")
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738)
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738)
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + r".\NavData")
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + r".\SidStars")
         else:
             print("PMDG B738 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-739"):
-            print("PMDG B739 Found" + (msfs_community + r".\pmdg-aircraft-739"))
+            print("PMDG B739 Found",(msfs_community + r".\pmdg-aircraft-739"))
             shutil.rmtree(pmdg_config_route_739 + r".\NavData")
         
             if os.path.exists(pmdg_config_route_739 + r".\SidStars"):
@@ -160,8 +160,8 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
             elif os.path.exists(pmdg_config_route_739 + r".\SIDSTARS"):
                 shutil.rmtree(pmdg_config_route_739 + r".\SIDSTARS")
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739)
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739)
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + r".\NavData")
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + r".\SidStars")
         else:
             print("PMDG B739 Not found in your community folder. We will skip this nav update.")
     else:
