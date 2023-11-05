@@ -8,7 +8,7 @@
 
 # Just you should know if you use our installer
  This installer is not officially confirmed by Navigraph and [SimPlaza](https://simplaza.org/). So we are NOT responsible for your content losses and their licences.
- Also [SimPlaza](https://simplaza.org/) is a illegal website of providing almost MSFS2020 contents like payware aircrafts, payware sceneries, payware tools and so on. Use of the website is at your own risk.
+ Also [SimPlaza](https://simplaza.org/) is a illegal website of providing almost MSFS2020 contents like payware aircrafts, payware sceneries, payware tools and so on for completely free. Use of the website is at your own risk.
 
 # How to use
  1. Visit [SimPlaza](https://simplaza.org/?s=Navigraph), and download the latest AIRAC Cycle Navigraph navdata file. (It must be a rar archive file.)
