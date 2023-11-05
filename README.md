@@ -18,7 +18,7 @@
  5. Follow its installation.
 
 # Navigraph navdata file differences
-On SimPlaza, there are two navdata file "Navdata MSFS2020" and "Navdata Installers".
+ On SimPlaza, there are two navdata file "Navdata MSFS2020" and "Navdata Installers".
 
-"Navdata MSFS2020" is for applying the navdata to Microsoft Flight Simulator 2020 itself.
-"Navdata Installer" is for third-party contents like PMDG 737, Fenix A320, and so on.
+ "Navdata MSFS2020" is for applying the navdata to Microsoft Flight Simulator 2020 itself.
+ "Navdata Installer" is for third-party contents like PMDG 737, Fenix A320, and so on.
