@@ -57,14 +57,15 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use
                 print(msfs_package)
         else:
             tkinter.Tk().withdraw()
-            tkinter.messagebox.showinfo('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
+            tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
             msfs_package = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
         shutil.move(r'.\msfs_native_nav_output\Content.xml', msfs_package)#「Content.xml」ファイルをコピー
         shutil.rmtree(msfs_native_nav_output)#ナビデータ一時解凍先フォルダーを消去
         print("Install complete.")
     else:
-        print("The file you selected is not valid as navdata. Please restart this application and reselect a file.")
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showerror("The file you selected is not valid as navdata. Please restart this application and reselect a file.")
         sys.exit()
 else:
     sys.exit()
@@ -168,5 +169,8 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         shutil.rmtree(pmdg_nav_output_ph2)
         print("Install complete.")
     else:
-        print("The file you selected is not valid as PMDG navdata. Please restart this application and reselect a file.")
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showerror("The file you selected is not valid as PMDG navdata. Please restart this application and reselect a file.")
         sys.exit()
+else:
+    sys.exit()
