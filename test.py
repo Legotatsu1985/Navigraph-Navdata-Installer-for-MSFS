@@ -11,54 +11,20 @@ import rarfile
 
 def on_nav_update_select_button_click():
     checked = [msfs_native_update.get(), pmdg_update.get(), fenix_update.get()]
-    popup_title_continue = "Continue?"
     if checked == [1, 0, 0]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="MSFS Native navdata will be installed only. Do you continue?") == True:
-            print("MSFS Native")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="MSFS Native navdata will be installed only.")
     elif checked == [0, 1, 0]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="PMDG 737 navdata will be installed only. Do you continue?") == True:
-            print("PMDG 737")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="PMDG 737 navtdada will be installed only.")
     elif checked == [0, 0, 1]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="Fenix A320 navdata will be installed only. Do you continue?") == True:
-            print("Fenix A320")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="Fenix A320 navdata will be installed only.")
     elif checked == [1, 1, 0]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="MSFS Native and PMDG 737 navdatas will be installed. Do you continue?") == True:
-            print("MSFS Native and PMDG 737")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="MSFS Native and PMDG 737 navdatas will be installed.")
     elif checked == [0, 1, 1]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="PMDG 737 and Fenix A320 navdatas will be installed. Do you continue?") == True:
-            print("PMDG 737 and Fenix A320")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="PMDG 737 and Fenix A320 navdatas will be installed.")
     elif checked == [1, 0, 1]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="MSFS Native and Fenix A320 navdatas will be installed. Do you continue?") == True:
-            print("MSFS Native and Fenix A320")
-        else:
-            print("NONE")
-        return 0
-    elif checked == [1, 1, 1]:
-        if tkinter.messagebox.askokcancel(popup_title_continue, text="MSFS Native, PMDG 737, and Fenix A320 navdatas will be installed, Do you continue?") == True:
-            print("ALL")
-        else:
-            print("NONE")
-        return 0
+        label.config(text="MSFS Native and Fenix A320 navdatas will be installed.")
     else:
         label.config(text="Please select the checkbox you want to install!")
-        return 0
-
-
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
