@@ -11,9 +11,9 @@ import rarfile
 
 def on_nav_update_select_button_click():
     if msfs_native_update.get() == 1:
-        result_text += "It will update MSFS Native navdata."
+        result_text = "It will update MSFS Native navdata."
     if pmdg_update.get() == 1:
-        result_text += "It will update PMDG 737 navdata."
+        result_text = "It will update PMDG 737 navdata."
     label.config(text=result_text)
 
 root = tkinter.Tk()
