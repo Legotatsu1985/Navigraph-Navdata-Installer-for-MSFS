@@ -37,6 +37,8 @@ def install_confirmation(install_contents):
         msfs_native_install()
         pmdg_install()
         fenix_install()
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showinfo("Complete", "Installation complete.")
     else:
         return 0
 
