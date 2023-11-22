@@ -23,12 +23,14 @@ def on_nav_update_select_button_click():
         label.config(text="PMDG 737 and Fenix A320 navdatas will be installed.")
     elif checked == [1, 0, 1]:
         label.config(text="MSFS Native and Fenix A320 navdatas will be installed.")
+    elif checked == [1, 1, 1]:
+        label.config(text="All contents will be installed.")
     else:
         label.config(text="Please select the checkbox you want to install!")
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
-root.geometry("300x300")
+root.geometry("150x300")
 msfs_native_update = tkinter.IntVar()
 pmdg_update = tkinter.IntVar()
 fenix_update = tkinter.IntVar()
