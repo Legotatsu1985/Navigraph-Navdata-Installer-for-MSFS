@@ -77,10 +77,15 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
     pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
     if'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
         
-        pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1"
-        pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2"
-        pmdg_nav_NavData = pmdg_nav_output_ph2 + r".\NavData"
-        pmdg_nav_SidStars = pmdg_nav_output_ph2 + r".\SidStars"
+        pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1" #解凍段階1
+        pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(解凍完了)
+        
+        pmdg_navdata_lower_case = r".\NavData"
+        pmdg_sidstars_lower_case = r".\SidStars"
+        pmdg_sidstars_upper_case = r".\SIDSTARS"
+        
+        pmdg_nav_NavData = pmdg_nav_output_ph2 + pmdg_navdata_lower_case
+        pmdg_nav_SidStars = pmdg_nav_output_ph2 + pmdg_sidstars_lower_case
         pmdg_config_route_736 = msfs_community + r".\pmdg-aircraft-736\Config"
         pmdg_config_route_737 = msfs_community + r".\pmdg-aircraft-737\Config"
         pmdg_config_route_738 = msfs_community + r".\pmdg-aircraft-738\Config"
@@ -112,57 +117,57 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','
         print("Installing Navdata...")
         if os.path.exists(msfs_community + r".\pmdg-aircraft-736"):
             print("PMDG B736 Found",(msfs_community + r".\pmdg-aircraft-736"))
-            shutil.rmtree(pmdg_config_route_736 + r".\NavData")
+            shutil.rmtree(pmdg_config_route_736 + pmdg_navdata_lower_case)
         
-            if os.path.exists(pmdg_config_route_736 + r".\SidStars"):
-                shutil.rmtree(pmdg_config_route_736 + r".\SidStars")
-            elif os.path.exists(pmdg_config_route_736 + r".\SIDSTARS"):
-                shutil.rmtree(pmdg_config_route_736 + r".\SIDSTARS")
+            if os.path.exists(pmdg_config_route_736 + pmdg_sidstars_lower_case):
+                shutil.rmtree(pmdg_config_route_736 + pmdg_sidstars_lower_case)
+            elif os.path.exists(pmdg_config_route_736 + pmdg_sidstars_upper_case):
+                shutil.rmtree(pmdg_config_route_736 + pmdg_sidstars_upper_case)
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + r".\NavData")
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + r".\SidStars")
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + pmdg_navdata_lower_case)
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + pmdg_sidstars_lower_case)
         else:
             print("PMDG B736 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-737"):
             print("PMDG B737 Found",(msfs_community + r".\pmdg-aircraft-737"))
-            shutil.rmtree(pmdg_config_route_737 + r".\NavData")
+            shutil.rmtree(pmdg_config_route_737 + pmdg_navdata_lower_case)
         
-            if os.path.exists(pmdg_config_route_737 + r".\SidStars"):
-                shutil.rmtree(pmdg_config_route_737 + r".\SidStars")
-            elif os.path.exists(pmdg_config_route_737 + r".\SIDSTARS"):
-                shutil.rmtree(pmdg_config_route_737 + r".\SIDSTARS")
+            if os.path.exists(pmdg_config_route_737 + pmdg_sidstars_lower_case):
+                shutil.rmtree(pmdg_config_route_737 + pmdg_sidstars_lower_case)
+            elif os.path.exists(pmdg_config_route_737 + pmdg_sidstars_upper_case):
+                shutil.rmtree(pmdg_config_route_737 + pmdg_sidstars_upper_case)
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + r".\NavData")
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + r".\SidStars")
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + pmdg_navdata_lower_case)
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + pmdg_sidstars_lower_case)
         else:
             print("PMDG B737 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-738"):
             print("PMDG B738 Found",(msfs_community + r".\pmdg-aircraft-738"))
-            shutil.rmtree(pmdg_config_route_738 + r".\NavData")
+            shutil.rmtree(pmdg_config_route_738 + pmdg_navdata_lower_case)
         
-            if os.path.exists(pmdg_config_route_738 + r".\SidStars"):
-                shutil.rmtree(pmdg_config_route_738 + r".\SidStars")
-            elif os.path.exists(pmdg_config_route_738 + r".\SIDSTARS"):
-                shutil.rmtree(pmdg_config_route_738 + r".\SIDSTARS")
+            if os.path.exists(pmdg_config_route_738 + pmdg_sidstars_lower_case):
+                shutil.rmtree(pmdg_config_route_738 + pmdg_sidstars_lower_case)
+            elif os.path.exists(pmdg_config_route_738 + pmdg_sidstars_upper_case):
+                shutil.rmtree(pmdg_config_route_738 + pmdg_sidstars_upper_case)
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + r".\NavData")
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + r".\SidStars")
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + pmdg_navdata_lower_case)
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + pmdg_sidstars_lower_case)
         else:
             print("PMDG B738 Not found in your community folder. We will skip this nav update.")
     
         if os.path.exists(msfs_community + r".\pmdg-aircraft-739"):
             print("PMDG B739 Found",(msfs_community + r".\pmdg-aircraft-739"))
-            shutil.rmtree(pmdg_config_route_739 + r".\NavData")
+            shutil.rmtree(pmdg_config_route_739 + pmdg_navdata_lower_case)
         
-            if os.path.exists(pmdg_config_route_739 + r".\SidStars"):
-                shutil.rmtree(pmdg_config_route_739 + r".\SidStars")
-            elif os.path.exists(pmdg_config_route_739 + r".\SIDSTARS"):
-                shutil.rmtree(pmdg_config_route_739 + r".\SIDSTARS")
+            if os.path.exists(pmdg_config_route_739 + pmdg_sidstars_lower_case):
+                shutil.rmtree(pmdg_config_route_739 + pmdg_sidstars_lower_case)
+            elif os.path.exists(pmdg_config_route_739 + pmdg_sidstars_upper_case):
+                shutil.rmtree(pmdg_config_route_739 + pmdg_sidstars_upper_case)
         
-            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + r".\NavData")
-            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + r".\SidStars")
+            shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + pmdg_navdata_lower_case)
+            shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + pmdg_sidstars_lower_case)
         else:
             print("PMDG B739 Not found in your community folder. We will skip this nav update.")
         
