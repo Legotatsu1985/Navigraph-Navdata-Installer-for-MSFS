@@ -9,7 +9,7 @@ from tkinter import filedialog
 import rarfile
 
 def on_nav_install_select_button_click():
-    checked = [msfs_native_cb.get(), pmdg_cb.get(), fenix_cb.get()]
+    checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
     print(checked)
     if checked == [1, 0, 0]:
         install_confirmation("MSFS Native navdata will be installed only. Do you continue?")
@@ -43,7 +43,7 @@ def install_confirmation(install_contents):
         return 0
 
 def msfs_native_install():
-    if msfs_native_cb.get() == 1:
+    if msfs_native_checkbox.get() == 1:
         #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
         tkinter.Tk().withdraw()
         if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-msfs2020-airac-cycle-2310-rev-1.rar"') == True:
@@ -93,7 +93,7 @@ def msfs_native_install():
             sys.exit()
 
 def pmdg_install():
-    if pmdg_cb.get() == 1:
+    if pmdg_checkbox.get() == 1:
         tkinter.Tk().withdraw()
         if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
             
@@ -200,7 +200,7 @@ def pmdg_install():
             sys.exit()
 
 def fenix_install():
-    if fenix_cb.get() == 1:
+    if fenix_checkbox.get() == 1:
         print("Installing Fenix A320 navdata...")
 
 msfs_native_nav_output = r".\msfs_native_nav_output" #引数定義（ナビデータ一時展開先フォルダー）
@@ -220,12 +220,12 @@ root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("400x150")
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
-msfs_native_cb = tkinter.IntVar()
-pmdg_cb = tkinter.IntVar()
-fenix_cb = tkinter.IntVar()
-tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_cb).pack()
-tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_cb).pack()
-tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_cb).pack()
+msfs_native_checkbox = tkinter.IntVar()
+pmdg_checkbox = tkinter.IntVar()
+fenix_checkbox = tkinter.IntVar()
+tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_checkbox).pack()
+tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox).pack()
+tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox).pack()
 tkinter.Button(root, text="Install", command=on_nav_install_select_button_click).pack()
 tkinter.Button(root, text="Exit", command=sys.exit).pack()
 root.mainloop()
