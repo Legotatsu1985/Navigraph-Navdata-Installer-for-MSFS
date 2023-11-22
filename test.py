@@ -12,21 +12,26 @@ import rarfile
 def on_nav_update_select_button_click():
     checked = [msfs_native_update.get(), pmdg_update.get(), fenix_update.get()]
     if checked == [1, 0, 0]:
-        label.config(text="MSFS Native navdata will be installed only.")
+        install_confirmation("MSFS Native navdata will be installed only.")
     elif checked == [0, 1, 0]:
-        label.config(text="PMDG 737 navtdada will be installed only.")
+        install_confirmation("PMDG 737 navtdada will be installed only.")
     elif checked == [0, 0, 1]:
-        label.config(text="Fenix A320 navdata will be installed only.")
+        install_confirmation("Fenix A320 navdata will be installed only.")
     elif checked == [1, 1, 0]:
-        label.config(text="MSFS Native and PMDG 737 navdatas will be installed.")
+        install_confirmation("MSFS Native and PMDG 737 navdatas will be installed.")
     elif checked == [0, 1, 1]:
-        label.config(text="PMDG 737 and Fenix A320 navdatas will be installed.")
+        install_confirmation("PMDG 737 and Fenix A320 navdatas will be installed.")
     elif checked == [1, 0, 1]:
-        label.config(text="MSFS Native and Fenix A320 navdatas will be installed.")
+        install_confirmation("MSFS Native and Fenix A320 navdatas will be installed.")
     elif checked == [1, 1, 1]:
-        label.config(text="All contents will be installed.")
+        install_confirmation("All contents will be installed.")
     else:
-        label.config(text="Please select the checkbox you want to install!")
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showerror("Selection Error", text="Please select at least one checkbox to continue installation.")
+
+def install_confirmation(install_contents):
+    tkinter.Tk().withdraw()
+    tkinter.messagebox.askokcancel("Continue?", install_contents)
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
