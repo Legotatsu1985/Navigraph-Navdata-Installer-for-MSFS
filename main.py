@@ -219,7 +219,7 @@ msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title=
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("400x150")
-tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Start Update".').pack()
+tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
