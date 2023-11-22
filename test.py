@@ -32,7 +32,31 @@ def on_nav_update_select_button_click():
 
 def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
-    tkinter.messagebox.askokcancel("Continue?", install_contents)
+    install_yesno = tkinter.messagebox.askokcancel("Continue?", install_contents)
+    if install_yesno == True:
+        msfs_native_install()
+        pmdg_install()
+        fenix_install()
+    else:
+        return 0
+
+def msfs_native_install():
+    if msfs_native_update == 1:
+        print("Installing MSFS Native navdata...")
+    else:
+        return 0
+
+def pmdg_install():
+    if pmdg_update == 1:
+        print("Installing PMDG 737 navdata...")
+    else:
+        return 0
+
+def fenix_install():
+    if fenix_update == 1:
+        print("Installing Fenix A320 navdata...")
+    else:
+        return 0
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
