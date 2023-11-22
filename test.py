@@ -27,7 +27,8 @@ def on_nav_update_select_button_click():
         install_confirmation("All contents will be installed.")
     else:
         tkinter.Tk().withdraw()
-        tkinter.messagebox.showerror("Selection Error", text="Please select at least one checkbox to continue installation.")
+        tkinter.messagebox.showerror("Please select at least one checkbox to continue installation.")
+    return 0
 
 def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
