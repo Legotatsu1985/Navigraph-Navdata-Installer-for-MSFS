@@ -39,6 +39,7 @@ def install_confirmation(install_contents):
         fenix_install()
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo("Complete", "Installation complete.")
+        sys.exit()
     else:
         return 0
 
