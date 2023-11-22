@@ -34,23 +34,23 @@ def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
     install_yesno = tkinter.messagebox.askokcancel("Continue?", install_contents)
     if install_yesno == True:
-        msfs_native_install()
-        pmdg_install()
-        fenix_install()
+        msfs_native_install(msfs_native_update)
+        pmdg_install(pmdg_update)
+        fenix_install(fenix_update)
     else:
         return 0
 
-def msfs_native_install():
+def msfs_native_install(msfs_native_update):
     if msfs_native_update == 1:
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo(title="FYI", message="Installing MSFS Native navdata...")
 
-def pmdg_install():
+def pmdg_install(pmdg_update):
     if pmdg_update == 1:
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo(title="FYI", message="Installing PMDG 737 navdata...")
 
-def fenix_install():
+def fenix_install(fenix_update):
     if fenix_update == 1:
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo(title="FYI", message="Installing Fenix A320 navdata...")
