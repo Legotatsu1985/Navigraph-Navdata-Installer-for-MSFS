@@ -40,21 +40,6 @@ def install_confirmation(install_contents):
     else:
         return 0
 
-def msfs_native_install():
-    if msfs_native_update == [1]:
-        tkinter.Tk().withdraw()
-        tkinter.messagebox.showinfo(title="FYI", message="Installing MSFS Native navdata...")
-
-def pmdg_install():
-    if pmdg_update == [1]:
-        tkinter.Tk().withdraw()
-        tkinter.messagebox.showinfo(title="FYI", message="Installing PMDG 737 navdata...")
-
-def fenix_install():
-    if fenix_update == [1]:
-        tkinter.Tk().withdraw()
-        tkinter.messagebox.showinfo(title="FYI", message="Installing Fenix A320 navdata...")
-
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("300x150")
@@ -68,3 +53,15 @@ tkinter.Button(root, text="Start Update", command=on_nav_update_select_button_cl
 tkinter.Button(root, text="Exit", command=sys.exit).pack()
 tkinter.Label(root).pack()
 root.mainloop()
+
+def msfs_native_install():
+    if msfs_native_update == [1]:
+        print("MSFS")
+
+def pmdg_install():
+    if pmdg_update == [1]:
+        print("PMDG")
+
+def fenix_install():
+    if fenix_update == [1]:
+        print("FENIX")
