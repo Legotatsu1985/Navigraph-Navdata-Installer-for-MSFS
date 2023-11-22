@@ -30,16 +30,6 @@ def on_nav_update_select_button_click():
         tkinter.messagebox.showerror(title="Selection Error", message="Please select at least one checkbox to continue installation.")
     return 0
 
-def install_confirmation(install_contents):
-    tkinter.Tk().withdraw()
-    install_yesno = tkinter.messagebox.askokcancel("Continue?", install_contents)
-    if install_yesno == True:
-        msfs_native_install()
-        pmdg_install()
-        fenix_install()
-    else:
-        return 0
-
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("300x150")
@@ -53,6 +43,16 @@ tkinter.Button(root, text="Start Update", command=on_nav_update_select_button_cl
 tkinter.Button(root, text="Exit", command=sys.exit).pack()
 tkinter.Label(root).pack()
 root.mainloop()
+
+def install_confirmation(install_contents):
+    tkinter.Tk().withdraw()
+    install_yesno = tkinter.messagebox.askokcancel("Continue?", install_contents)
+    if install_yesno == True:
+        msfs_native_install()
+        pmdg_install()
+        fenix_install()
+    else:
+        return 0
 
 def msfs_native_install():
     if msfs_native_update == [1]:
