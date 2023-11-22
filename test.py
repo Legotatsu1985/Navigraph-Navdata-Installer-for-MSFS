@@ -41,15 +41,15 @@ def install_confirmation(install_contents):
         return 0
 
 def msfs_native_install():
-    if msfs_native_update == [1]:
+    if msfs_native_update.get() == 1:
         print("MSFS")
 
 def pmdg_install():
-    if pmdg_update == [1]:
+    if pmdg_update.get() == 1:
         print("PMDG")
 
 def fenix_install():
-    if fenix_update == [1]:
+    if fenix_update.get() == 1:
         print("FENIX")
 
 root = tkinter.Tk()
