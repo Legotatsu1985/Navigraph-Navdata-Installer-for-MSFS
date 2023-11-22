@@ -10,6 +10,7 @@ import rarfile
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
+    print(checked)
     if checked == [1, 0, 0]:
         install_confirmation("MSFS Native navdata will be installed only. Do you continue?")
     elif checked == [0, 1, 0]:
