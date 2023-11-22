@@ -203,18 +203,7 @@ def fenix_install():
     if fenix_checkbox.get() == 1:
         print("Installing Fenix A320 navdata...")
 
-msfs_native_nav_output = r".\msfs_native_nav_output" #引数定義（ナビデータ一時展開先フォルダー）
 
-#↓ナビデータ一時解凍先フォルダーが存在する場合は削除↓
-if os.path.exists(msfs_native_nav_output):
-    shutil.rmtree(msfs_native_nav_output)
-
-#↓Communityフォルダー選択ダイアログ↓
-tkinter.Tk().withdraw()
-if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == False:
-    sys.exit()
-
-msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
