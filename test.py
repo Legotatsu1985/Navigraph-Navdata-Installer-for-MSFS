@@ -9,15 +9,22 @@ from tkinter import filedialog
 
 import rarfile
 
-tkinter.Tk().withdraw()
-tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.')
+def on_nav_update_select_button_click():
+    if msfs_native_update.get() == 1:
+        result_text += "It will update MSFS Native navdata."
+    if pmdg_update.get() == 1:
+        result_text += "It will update PMDG 737 navdata."
+    label.config(text=result_text)
 
-pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
-print(pmdg_nav_rar)
-
-pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
-
-if 'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
-    print("Valid")
-else:
-    print("Invalid")
+root = tkinter.Tk()
+msfs_native_update = tkinter.IntVar()
+msfs_check_box = tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_update)
+msfs_check_box.pack()
+pmdg_update = tkinter.IntVar()
+pmdg_check_box = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_update)
+pmdg_check_box.pack()
+button = tkinter.Button(root, text="Update", command=on_nav_update_select_button_click)
+button.pack()
+label = tkinter.Label(root)
+label.pack()
+root.mainloop()
