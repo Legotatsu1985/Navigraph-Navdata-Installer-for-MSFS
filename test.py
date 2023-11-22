@@ -38,7 +38,7 @@ tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_updat
 tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_update).pack()
 tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_update).pack()
 tkinter.Button(root, text="Start Update", command=on_nav_update_select_button_click).pack()
-tkinter.Button(root, text="Exit", command=sys.exit)
+tkinter.Button(root, text="Exit", command=sys.exit).pack()
 label = tkinter.Label(root)
 label.pack()
 root.mainloop()
