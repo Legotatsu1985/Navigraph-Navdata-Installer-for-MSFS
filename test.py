@@ -30,7 +30,7 @@ def on_nav_update_select_button_click():
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
-root.geometry("150x300")
+root.geometry("300x150")
 msfs_native_update = tkinter.IntVar()
 pmdg_update = tkinter.IntVar()
 fenix_update = tkinter.IntVar()
