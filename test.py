@@ -30,20 +30,6 @@ def on_nav_update_select_button_click():
         tkinter.messagebox.showerror(title="Selection Error", message="Please select at least one checkbox to continue installation.")
     return 0
 
-root = tkinter.Tk()
-root.title("Navigraph Navdata Installer for MSFS")
-root.geometry("300x150")
-msfs_native_update = tkinter.IntVar()
-pmdg_update = tkinter.IntVar()
-fenix_update = tkinter.IntVar()
-tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_update).pack()
-tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_update).pack()
-tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_update).pack()
-tkinter.Button(root, text="Start Update", command=on_nav_update_select_button_click).pack()
-tkinter.Button(root, text="Exit", command=sys.exit).pack()
-tkinter.Label(root).pack()
-root.mainloop()
-
 def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
     install_yesno = tkinter.messagebox.askokcancel("Continue?", install_contents)
@@ -65,3 +51,17 @@ def pmdg_install():
 def fenix_install():
     if fenix_update == [1]:
         print("FENIX")
+
+root = tkinter.Tk()
+root.title("Navigraph Navdata Installer for MSFS")
+root.geometry("300x150")
+msfs_native_update = tkinter.IntVar()
+pmdg_update = tkinter.IntVar()
+fenix_update = tkinter.IntVar()
+tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_update).pack()
+tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_update).pack()
+tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_update).pack()
+tkinter.Button(root, text="Start Update", command=on_nav_update_select_button_click).pack()
+tkinter.Button(root, text="Exit", command=sys.exit).pack()
+tkinter.Label(root).pack()
+root.mainloop()
