@@ -44,6 +44,11 @@ def install_confirmation(install_contents):
 
 def msfs_native_install():
     if msfs_native_checkbox.get() == 1:
+        msfs_native_nav_output = r".\msfs_native_nav_output" #引数定義（ナビデータ一時展開先フォルダー）
+        #↓ナビデータ一時解凍先フォルダーが存在する場合は削除↓
+        if os.path.exists(msfs_native_nav_output):
+            shutil.rmtree(msfs_native_nav_output)
+        
         #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
         tkinter.Tk().withdraw()
         if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-msfs2020-airac-cycle-2310-rev-1.rar"') == True:
@@ -205,9 +210,16 @@ def fenix_install():
 
 
 
+
+
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("400x150")
+#↓Communityフォルダー選択ダイアログ↓
+tkinter.Tk().withdraw()
+if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == False:
+    sys.exit()
+msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
