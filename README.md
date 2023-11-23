@@ -17,7 +17,7 @@
 
 # How to use
  1. Visit [SimPlaza](https://simplaza.org/?s=Navigraph), and download the latest AIRAC Cycle Navigraph navdata file. (It must be a rar archive file.)
- 2. Download the latest version [here](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/releases).
+ 2. Download the latest version program [here](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/releases).
  3. Unzip the file you downloaded.
  4. Double-click the bat file named like "Navigraph_Navdata_Installer_(MSFS2020).bat".
  5. Follow its installation.
