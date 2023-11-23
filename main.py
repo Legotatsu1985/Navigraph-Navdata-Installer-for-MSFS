@@ -241,6 +241,15 @@ def fenix_install():
                     shutil.rmtree(fenix_nav_output_ph1)
                     
                     print("Decompression complete")
+                    
+                    print("Installing Navdata...")
+                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle.json", fenix_nav_install_path)
+                    print('Copied "cycle.json"')
+                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle_info.txt", fenix_nav_install_path)
+                    print('Copied "cycle_info.txt"')
+                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\nd.db3", fenix_nav_install_path)
+                    print('Copied "nd.db3"')
+                    print("Install complete.")
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror("Is the Fenix A320 installed?", 'Could not find the folder "C:\\ProgramData\\Fenix\\Navdata". It seems Fenix A320 is not installed in this computer.')
