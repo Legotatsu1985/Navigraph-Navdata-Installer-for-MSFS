@@ -230,6 +230,8 @@ tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
     msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
     if msfs_community == "":
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showerror("Error!", "An expection has been occured. Please restart the application.")
         sys.exit()
 else:
     sys.exit()
