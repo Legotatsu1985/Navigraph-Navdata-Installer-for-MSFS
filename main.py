@@ -220,7 +220,7 @@ def fenix_install():
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
-root.geometry("400x150")
+root.geometry("500x200")
 #↓Communityフォルダー選択ダイアログ↓
 tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
