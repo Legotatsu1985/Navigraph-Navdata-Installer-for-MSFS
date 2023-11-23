@@ -32,6 +32,9 @@ def on_nav_install_select_button_click():
 def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
     if tkinter.messagebox.askokcancel("Continue?", install_contents) == True:
+        msfs_native_checkbutton['state'] = 'disabled'
+        pmdg_checkbutton['state'] = 'disabled'
+        fenix_checkbutton['state'] = 'disabled'
         msfs_native_install()
         pmdg_install()
         fenix_install()
@@ -231,9 +234,9 @@ tkinter.Label(root, justify="left", text="Your Community folder path: " + msfs_c
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
-tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_checkbox).pack()
-tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox).pack()
-tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox).pack()
-tkinter.Button(root, text="Install", command=on_nav_install_select_button_click).pack()
-tkinter.Button(root, text="Exit", command=sys.exit).pack()
+msfs_native_checkbutton = tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_checkbox).pack()
+pmdg_checkbutton = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox).pack()
+fenix_checkbutton = tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox).pack()
+install_button = tkinter.Button(root, text="Install", command=on_nav_install_select_button_click).pack()
+exit_button = tkinter.Button(root, text="Exit", command=sys.exit).pack()
 root.mainloop()
