@@ -32,9 +32,9 @@ def on_nav_install_select_button_click():
 def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
     if tkinter.messagebox.askokcancel("Continue?", install_contents) == True:
-        msfs_native_checkbutton(state="disabled")
-        pmdg_checkbutton(state="disabled")
-        fenix_checkbutton(state="disabled")
+        msfs_native_checkbutton["state"] = "disable"
+        pmdg_checkbutton["state"] = "disable"
+        fenix_checkbutton["state"] = "disable"
         msfs_native_install()
         pmdg_install()
         fenix_install()
