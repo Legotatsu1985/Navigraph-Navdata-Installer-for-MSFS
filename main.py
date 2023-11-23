@@ -35,6 +35,8 @@ def install_confirmation(install_contents):
         msfs_native_checkbutton["state"] = "disable"
         pmdg_checkbutton["state"] = "disable"
         fenix_checkbutton["state"] = "disable"
+        install_button["state"] = "disable"
+        exit_button["state"] = "disable"
         msfs_native_install()
         pmdg_install()
         fenix_install()
