@@ -246,4 +246,8 @@ install_button = tkinter.Button(root, text="Install", command=on_nav_install_sel
 install_button.pack()
 exit_button = tkinter.Button(root, text="Exit", command=sys.exit)
 exit_button.pack()
+info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
+info_label.pack()
+version_label = tkinter.Label(root, text="v0.1.3", anchor=tkinter.SE)
+version_label.pack()
 root.mainloop()
