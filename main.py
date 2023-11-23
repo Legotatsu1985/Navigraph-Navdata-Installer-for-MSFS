@@ -243,7 +243,7 @@ def fenix_install():
                     print("Decompression complete")
                 else:
                     tkinter.Tk().withdraw()
-                    tkinter.messagebox.showerror("Is the Fenix A320 installed?", 'Could not find the folder "C:\ProgramData\Fenix\Navdata". It seems Fenix A320 is not installed in this computer.')
+                    tkinter.messagebox.showerror("Is the Fenix A320 installed?", 'Could not find the folder "C:\\ProgramData\\Fenix\\Navdata". It seems Fenix A320 is not installed in this computer.')
                     sys.exit()
             else:
                 tkinter.Tk().withdraw()
