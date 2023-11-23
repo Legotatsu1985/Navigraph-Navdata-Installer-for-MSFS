@@ -107,13 +107,12 @@ def pmdg_install():
     if pmdg_checkbox.get() == 1:
         tkinter.Tk().withdraw()
         if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
-            
             pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
             pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
             if'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
                 
                 pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1" #解凍段階1
-                pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(解凍完了)
+                pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(最終完了)
                 pmdg_nav_NavData = pmdg_nav_output_ph2 + r".\NavData" #解凍先NavDataのフルパス
                 pmdg_nav_SidStars = pmdg_nav_output_ph2 + r".\SidStars" #解凍先SidStarsのフルパス
                 pmdg_config_route_736 = msfs_community + r".\pmdg-aircraft-736\Config"
@@ -205,7 +204,7 @@ def pmdg_install():
                 print("Install complete.")
             else:
                 tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("The file you selected is not valid as PMDG navdata. Please restart this application and reselect a file.")
+                tkinter.messagebox.showerror("The file you selected is not valid for PMDG navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
@@ -214,7 +213,44 @@ def pmdg_install():
 
 def fenix_install():
     if fenix_checkbox.get() == 1:
-        print("Installing Fenix A320 navdata...")
+        tkinter.Tk().withdraw()
+        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for Fenix A320','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
+            fenix_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file', '*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
+            fenix_nav_rar_basename = os.path.basename(fenix_nav_rar)
+            fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata" #Fenix A320 ナビデータのインストール先フォルダー
+            if 'navigraph-navdata-installers-airac-cycle-' in fenix_nav_rar_basename:
+                if os.path.exists(fenix_nav_install_path):
+                    fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
+                    fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
+                    
+                    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                    if os.path.exists(fenix_nav_output_ph1):
+                        shutil.rmtree(fenix_nav_output_ph1)
+                    if os.path.exists(fenix_nav_output_ph2):
+                        shutil.rmtree(fenix_nav_output_ph2)
+                    
+                    rarfile.UNRAR_TOOL = r".\UnRAR.exe"
+                    
+                    rarfile.RarFile(fenix_nav_rar).extractall("fenix_nav_output_ph1")
+                    
+                    for fenix_nav_final_output in glob.glob(r".\fenix_nav_output_ph1\Navigraph AIRAC *\fenix_a320_*.rar"):
+                        print(fenix_nav_final_output)
+                    
+                    rarfile.RarFile(fenix_nav_final_output).extractall("fenix_nav_output_ph2")
+                    
+                    shutil.rmtree(fenix_nav_output_ph1)
+                    
+                    print("Decompression complete")
+                else:
+                    tkinter.Tk().withdraw()
+                    tkinter.messagebox.showerror("Is the Fenix A320 installed?", 'Could not find the folder "C:\ProgramData\Fenix\Navdata". It seems Fenix A320 is not installed in this computer.')
+                    sys.exit()
+            else:
+                tkinter.Tk().withdraw()
+                tkinter.messagebox.showerror("The file you selected is not valid for Fenix A320 navdata. Please restart this application and reselect a file.")
+                sys.exit()
+        else:
+            sys.exit()
     else:
         return
 
