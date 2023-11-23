@@ -224,13 +224,12 @@ def fenix_install():
 
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
-root.geometry("600x200")
+root.geometry("500x300")
 #↓Communityフォルダー選択ダイアログ↓
 tkinter.Tk().withdraw()
-if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
-    msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-else:
+if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == False:
     sys.exit()
+msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
 tkinter.Label(root, justify="left", text="Your Community folder path: " + msfs_community).pack()
 msfs_native_checkbox = tkinter.IntVar()
