@@ -10,7 +10,7 @@
  This installer is not officially confirmed by Navigraph and [SimPlaza](https://simplaza.org/). So we are NOT responsible for your content losses and their licences.
  Also [SimPlaza](https://simplaza.org/) is a illegal website of providing almost MSFS2020 contents like payware aircrafts, payware sceneries, payware tools and so on for completely free. Use of the website is at your own risk.
 
-# Installable content navdatas
+# Installable navdata contents
  - MSFS Native navdata
  - PMDG 737 navdata
  - Fenix A320 navdata
