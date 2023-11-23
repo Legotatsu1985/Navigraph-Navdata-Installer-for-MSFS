@@ -229,6 +229,8 @@ root.geometry("500x250")
 tkinter.Tk().withdraw()
 if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
     msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
+    if msfs_community == "":
+        sys.exit()
 else:
     sys.exit()
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
