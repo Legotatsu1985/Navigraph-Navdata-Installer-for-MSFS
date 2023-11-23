@@ -243,12 +243,19 @@ def fenix_install():
                     print("Decompression complete")
                     
                     print("Installing Navdata...")
+                    if os.path.isfile(fenix_nav_install_path + r"cycle.json"):
+                        os.remove(fenix_nav_install_path + r"cycle.json")
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle.json", fenix_nav_install_path)
                     print('Copied "cycle.json"')
+                    if os.path.isfile(fenix_nav_install_path + r"cycle_info.txt"):
+                        os.remove(fenix_nav_install_path + r"cycle_info.txt")
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle_info.txt", fenix_nav_install_path)
                     print('Copied "cycle_info.txt"')
+                    if os.path.isfile(fenix_nav_install_path + r"nd.db3"):
+                        os.remove(fenix_nav_install_path + r"nd.db3")
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\nd.db3", fenix_nav_install_path)
                     print('Copied "nd.db3"')
+                    shutil.rmtree(fenix_nav_output_ph2)
                     print("Install complete.")
                 else:
                     tkinter.Tk().withdraw()
