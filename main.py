@@ -96,6 +96,8 @@ def msfs_native_install():
                 sys.exit()
         else:
             sys.exit()
+    else:
+        return
 
 def pmdg_install():
     if pmdg_checkbox.get() == 1:
@@ -203,10 +205,14 @@ def pmdg_install():
                 sys.exit()
         else:
             sys.exit()
+    else:
+        return
 
 def fenix_install():
     if fenix_checkbox.get() == 1:
         print("Installing Fenix A320 navdata...")
+    else:
+        return
 
 
 
@@ -222,6 +228,7 @@ if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select
 else:
     sys.exit()
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
+tkinter.Label(root, justify="left", text="Your Community folder path: " + msfs_community, font=("bold"))
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
