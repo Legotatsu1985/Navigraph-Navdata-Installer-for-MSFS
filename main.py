@@ -218,10 +218,6 @@ def fenix_install():
             fenix_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file', '*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
             fenix_nav_rar_basename = os.path.basename(fenix_nav_rar)
             fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata" #Fenix A320 ナビデータのインストール先フォルダー
-            
-            GREEN = '\033[33m'
-            END = '\033[0m'
-            
             if 'navigraph-navdata-installers-airac-cycle-' in fenix_nav_rar_basename:
                 if os.path.exists(fenix_nav_install_path):
                     fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
@@ -249,19 +245,19 @@ def fenix_install():
                     print("Installing Navdata...")
                     if os.path.isfile(fenix_nav_install_path + r".\cycle.json"):
                         os.remove(fenix_nav_install_path + r".\cycle.json")
-                        print(GREEN + 'Existing "cycle.json" deleted.' + END)
+                        print('Existing "cycle.json" deleted.')
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle.json", fenix_nav_install_path)
-                    print(GREEN + 'Copied "cycle.json"' + END)
+                    print('Copied "cycle.json"')
                     if os.path.isfile(fenix_nav_install_path + r".\cycle_info.txt"):
                         os.remove(fenix_nav_install_path + r".\cycle_info.txt")
-                        print(GREEN + 'Existing "cycle_info.txt" deleted.' + END)
+                        print('Existing "cycle_info.txt" deleted.')
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle_info.txt", fenix_nav_install_path)
-                    print(GREEN + 'Copied "cycle_info.txt"' + END)
+                    print('Copied "cycle_info.txt"')
                     if os.path.isfile(fenix_nav_install_path + r".\nd.db3"):
                         os.remove(fenix_nav_install_path + r".\nd.db3")
-                        print(GREEN + 'Existing "nd.db3" deleted.' + END)
+                        print('Existing "nd.db3" deleted.')
                     shutil.move(fenix_nav_output_ph2 + r".\Navdata\nd.db3", fenix_nav_install_path)
-                    print(GREEN + 'Copied "nd.db3"' + END)
+                    print('Copied "nd.db3"')
                     shutil.rmtree(fenix_nav_output_ph2)
                     print("Install complete.")
                 else:
