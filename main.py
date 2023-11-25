@@ -8,6 +8,21 @@ from tkinter import filedialog
 
 import rarfile
 
+def community_pick():
+    #↓Communityフォルダー選択ダイアログ↓
+    tkinter.Tk().withdraw()
+    if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
+        msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
+        if msfs_community == "":
+            tkinter.Tk().withdraw()
+            tkinter.messagebox.showerror("Error!", "An expection has been occured. Please restart the application.")
+            sys.exit()
+        tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
+        tkinter.Label(root, justify="left", text="Your Community folder path: " + msfs_community).pack()
+    else:
+        sys.exit()
+    print("Community folder = " + msfs_community)
+
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
     print(checked)
@@ -277,19 +292,6 @@ def fenix_install():
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x250")
-#↓Communityフォルダー選択ダイアログ↓
-tkinter.Tk().withdraw()
-if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
-    msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-    if msfs_community == "":
-        tkinter.Tk().withdraw()
-        tkinter.messagebox.showerror("Error!", "An expection has been occured. Please restart the application.")
-        sys.exit()
-else:
-    sys.exit()
-print("Community folder = " + msfs_community)
-tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
-tkinter.Label(root, justify="left", text="Your Community folder path: " + msfs_community).pack()
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
