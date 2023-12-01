@@ -35,5 +35,4 @@ def get_msfs_installed_path(msfs_opt_file):
     print("MSFS Installed Path = " + MSFSpath)
     return MSFSpath
 
-root = 
 get_msfs_opt_file()
