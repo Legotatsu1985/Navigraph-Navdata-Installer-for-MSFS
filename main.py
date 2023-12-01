@@ -78,7 +78,6 @@ def check_nav_version(MSFSpath):
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
-    print(pmdg_path)
     if os.path.exists(pmdg_path):
         pmdg_navdata_version_F = linecache.getline(pmdg_path + r"\Config\NavData\Cycle.json", 1).rstrip('\n')
         pmdg_navdata_version_H1 = pmdg_navdata_version_F.replace('{"cycle":', '')
