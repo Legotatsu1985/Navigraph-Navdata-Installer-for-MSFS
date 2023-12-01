@@ -32,7 +32,7 @@ def get_msfs_installed_path(msfs_opt_file):
     MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
     MSFSpath = MSFSpathH.strip('"')
     print("MSFS Installed Path = " + MSFSpath)
-    check_nav_version(MSFSpath)
+    
     return MSFSpath
 
 '''def check_nav_version(MSFSpath):
