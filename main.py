@@ -12,18 +12,18 @@ def get_msfs_opt_file():
     if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
             print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
-            check_nav_version(msfs_opt_file)
+            get_msfs_installed_path(msfs_opt_file)
     elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
             print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
-            check_nav_version(msfs_opt_file)
+            get_msfs_installed_path(msfs_opt_file)
     else:
         tkinter.Tk().withdraw()
         tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
         msfs_opt_file = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
 
-def check_nav_version(msfs_opt_file):
+def get_msfs_installed_path(msfs_opt_file):
     f = open(msfs_opt_file, "r")
     alltxt = f.readlines()
     f.close()
@@ -32,7 +32,10 @@ def check_nav_version(msfs_opt_file):
     MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
     MSFSpath = MSFSpathH.strip('"')
     print("MSFS Installed Path = " + MSFSpath)
+    check_nav_version(MSFSpath)
+    return MSFSpath
 
+def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
     if os.path.exists(msfs_community + r"\navigraph-navdata"):
         f = open(msfs_community + r"\navigraph-navdata\manifest.json")
@@ -382,8 +385,11 @@ msfs_native_checkbutton = tkinter.Checkbutton(root, text="MSFS Native Navdata", 
 pmdg_checkbutton = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox)
 fenix_checkbutton = tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox)
 msfs_native_nav_version = tkinter.Label(root)
+msfs_native_nav_version.pack()
 pmdg_nav_version = tkinter.Label(root)
+pmdg_nav_version.pack()
 fenix_nav_verison = tkinter.Label(root)
+fenix_nav_verison.pack()
 install_button = tkinter.Button(root, text="Install", command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
@@ -391,9 +397,6 @@ version_label = tkinter.Label(root, text="v0.1.3", anchor=tkinter.SE)
 msfs_native_checkbutton.pack()
 pmdg_checkbutton.pack()
 fenix_checkbutton.pack()
-msfs_native_nav_version.pack()
-pmdg_nav_version.pack()
-fenix_nav_verison.pack()
 install_button.pack()
 exit_button.pack()
 info_label.pack()
