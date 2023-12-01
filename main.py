@@ -13,11 +13,11 @@ import rarfile
 def get_msfs_opt_file():
     if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
-            print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
+            print("UserCfg.opt found: " + msfs_opt_file + "(MS Store Version)")
             get_msfs_installed_path(msfs_opt_file)
     elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
-            print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
+            print("UserCfg.opt found: " + msfs_opt_file + "(Steam Version)")
             get_msfs_installed_path(msfs_opt_file)
     else:
         tkinter.Tk().withdraw()
