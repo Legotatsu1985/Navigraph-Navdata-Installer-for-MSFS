@@ -91,7 +91,7 @@ def msfs_native_install():
                 MSFSpathF = alltxt[MSFSpathL-1].strip()
                 MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
                 MSFSpath = MSFSpathH.strip('"')
-                msfs_community = MSFSpath + r".\Community"
+                msfs_community = MSFSpath + r"\Community"
                 print("Community folder path = " + msfs_community)
         elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
             for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
@@ -103,7 +103,7 @@ def msfs_native_install():
                 MSFSpathF = alltxt[MSFSpathL-1].strip()
                 MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
                 MSFSpath = MSFSpathH.strip('"')
-                msfs_community = MSFSpath + r".\Community"
+                msfs_community = MSFSpath + r"\Community"
                 print("Community folder path = " + msfs_community)
         else:
             tkinter.Tk().withdraw()
