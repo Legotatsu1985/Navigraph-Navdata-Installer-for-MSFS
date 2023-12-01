@@ -31,10 +31,8 @@ def get_msfs_installed_path(msfs_opt_file):
     MSFSpathF = alltxt[MSFSpathL-1].strip()
     MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
     MSFSpath = MSFSpathH.strip('"')
-    check_nav_version(MSFSpath)
     print("MSFS Installed Path = " + MSFSpath)
-    
-    return MSFSpath
+    check_nav_version(MSFSpath)
 
 def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
