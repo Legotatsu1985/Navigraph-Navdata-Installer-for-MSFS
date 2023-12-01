@@ -160,117 +160,134 @@ def msfs_native_install():
 
 def pmdg_install():
     if pmdg_checkbox.get() == 1:
-        tkinter.Tk().withdraw()
-        #↓Communityフォルダー選択ダイアログ↓
-        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
-            msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-            if msfs_community == "":
-                tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("Error!", "An expection has been occured. Please restart the application.")
-                sys.exit()
-            print("Community folder = " + msfs_community)
+        #「UserCfg.opt」を検索、MSFSインストールパスを入手し、Communityフォルダーを定義
+        if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+            for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+                f = open(msfs_opt_file, "r")
+                alltxt = f.readlines()
+                f.close()
+                MSFSpathL = len(alltxt)
+                MSFSpathF = alltxt[MSFSpathL-1].strip()
+                MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                MSFSpath = MSFSpathH.strip('"')
+                msfs_community = MSFSpath + r"\Community"
+                print("Community folder path = " + msfs_community)
+        elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+            for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+                f = open(msfs_opt_file, "r")
+                alltxt = f.readlines()
+                f.close()
+                MSFSpathL = len(alltxt)
+                MSFSpathF = alltxt[MSFSpathL-1].strip()
+                MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                MSFSpath = MSFSpathH.strip('"')
+                msfs_community = MSFSpath + r"\Community"
+                print("Community folder path = " + msfs_community)
+        else:
             tkinter.Tk().withdraw()
-            if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
-                pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
-                pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
-                if'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
-                    
-                    pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1" #解凍段階1
-                    pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(最終完了)
-                    pmdg_nav_NavData = pmdg_nav_output_ph2 + r".\NavData" #解凍先NavDataのフルパス
-                    pmdg_nav_SidStars = pmdg_nav_output_ph2 + r".\SidStars" #解凍先SidStarsのフルパス
-                    pmdg_config_route_736 = msfs_community + r".\pmdg-aircraft-736\Config"
-                    pmdg_config_route_737 = msfs_community + r".\pmdg-aircraft-737\Config"
-                    pmdg_config_route_738 = msfs_community + r".\pmdg-aircraft-738\Config"
-                    pmdg_config_route_739 = msfs_community + r".\pmdg-aircraft-739\Config"
-
-                    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+            tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the Community folder. Please select your Community folder in next dialog.')
+            msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
+        
+        tkinter.Tk().withdraw()
+        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
+            pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
+            pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
+            if'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
                 
-                    if os.path.exists(pmdg_nav_output_ph1):
-                        shutil.rmtree(pmdg_nav_output_ph1)
+                pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1" #解凍段階1
+                pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(最終完了)
+                pmdg_nav_NavData = pmdg_nav_output_ph2 + r"\NavData" #解凍先NavDataのフルパス
+                pmdg_nav_SidStars = pmdg_nav_output_ph2 + r"\SidStars" #解凍先SidStarsのフルパス
+                pmdg_config_route_736 = msfs_community + r"\pmdg-aircraft-736\Config"
+                pmdg_config_route_737 = msfs_community + r"\pmdg-aircraft-737\Config"
+                pmdg_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
+                pmdg_config_route_739 = msfs_community + r"\pmdg-aircraft-739\Config"
 
-                    if os.path.exists(pmdg_nav_output_ph2):
-                        shutil.rmtree(pmdg_nav_output_ph2)
-                    
-                    rarfile.UNRAR_TOOL=r".\UnRAR.exe"
-
-                    rf2 = rarfile.RarFile(pmdg_nav_rar)
-                    rf2.extractall("pmdg_nav_output_ph1")
-
-                    for pmdg_nav_final_output in glob.glob(r".\pmdg_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
-                        print(pmdg_nav_final_output)
-
-                    rf3 = rarfile.RarFile(pmdg_nav_final_output)
-                    rf3.extractall("pmdg_nav_output_ph2")
-
+                print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+            
+                if os.path.exists(pmdg_nav_output_ph1):
                     shutil.rmtree(pmdg_nav_output_ph1)
-                
-                    print("Decompression complete.")
-                
-                    print("Installing Navdata...")
-                    if os.path.exists(msfs_community + r".\pmdg-aircraft-736"):
-                        print("PMDG B736 Found",(msfs_community + r".\pmdg-aircraft-736"))
-                        shutil.rmtree(pmdg_config_route_736 + r".\NavData")
-                    
-                        if os.path.exists(pmdg_config_route_736 + r".\SidStars"):
-                            shutil.rmtree(pmdg_config_route_736 + r".\SidStars")
-                        elif os.path.exists(pmdg_config_route_736 + r".\SIDSTARS"):
-                            shutil.rmtree(pmdg_config_route_736 + r".\SIDSTARS")
-                    
-                        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + r".\NavData")
-                        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + r".\SidStars")
-                    else:
-                        print("PMDG B736 Not found in your community folder. We will skip this nav update.")
-                
-                    if os.path.exists(msfs_community + r".\pmdg-aircraft-737"):
-                        print("PMDG B737 Found",(msfs_community + r".\pmdg-aircraft-737"))
-                        shutil.rmtree(pmdg_config_route_737 + r".\NavData")
-                    
-                        if os.path.exists(pmdg_config_route_737 + r".\SidStars"):
-                            shutil.rmtree(pmdg_config_route_737 + r".\SidStars")
-                        elif os.path.exists(pmdg_config_route_737 + r".\SIDSTARS"):
-                            shutil.rmtree(pmdg_config_route_737 + r".\SIDSTARS")
-                    
-                        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + r".\NavData")
-                        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + r".\SidStars")
-                    else:
-                        print("PMDG B737 Not found in your community folder. We will skip this nav update.")
-                
-                    if os.path.exists(msfs_community + r".\pmdg-aircraft-738"):
-                        print("PMDG B738 Found",(msfs_community + r".\pmdg-aircraft-738"))
-                        shutil.rmtree(pmdg_config_route_738 + r".\NavData")
-                    
-                        if os.path.exists(pmdg_config_route_738 + r".\SidStars"):
-                            shutil.rmtree(pmdg_config_route_738 + r".\SidStars")
-                        elif os.path.exists(pmdg_config_route_738 + r".\SIDSTARS"):
-                            shutil.rmtree(pmdg_config_route_738 + r".\SIDSTARS")
-                    
-                        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + r".\NavData")
-                        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + r".\SidStars")
-                    else:
-                        print("PMDG B738 Not found in your community folder. We will skip this nav update.")
-                
-                    if os.path.exists(msfs_community + r".\pmdg-aircraft-739"):
-                        print("PMDG B739 Found",(msfs_community + r".\pmdg-aircraft-739"))
-                        shutil.rmtree(pmdg_config_route_739 + r".\NavData")
-                    
-                        if os.path.exists(pmdg_config_route_739 + r".\SidStars"):
-                            shutil.rmtree(pmdg_config_route_739 + r".\SidStars")
-                        elif os.path.exists(pmdg_config_route_739 + r".\SIDSTARS"):
-                            shutil.rmtree(pmdg_config_route_739 + r".\SIDSTARS")
-                    
-                        shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + r".\NavData")
-                        shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + r".\SidStars")
-                    else:
-                        print("PMDG B739 Not found in your community folder. We will skip this nav update.")
-                    
+
+                if os.path.exists(pmdg_nav_output_ph2):
                     shutil.rmtree(pmdg_nav_output_ph2)
-                    print("Install complete.")
+                
+                rarfile.UNRAR_TOOL=r".\UnRAR.exe"
+
+                rf2 = rarfile.RarFile(pmdg_nav_rar)
+                rf2.extractall("pmdg_nav_output_ph1")
+
+                for pmdg_nav_final_output in glob.glob(r".\pmdg_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
+                    print(pmdg_nav_final_output)
+
+                rf3 = rarfile.RarFile(pmdg_nav_final_output)
+                rf3.extractall("pmdg_nav_output_ph2")
+
+                shutil.rmtree(pmdg_nav_output_ph1)
+            
+                print("Decompression complete.")
+            
+                print("Installing Navdata...")
+                if os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
+                    print("PMDG B736 Found",(msfs_community + r"\pmdg-aircraft-736"))
+                    shutil.rmtree(pmdg_config_route_736 + r"\NavData")
+                
+                    if os.path.exists(pmdg_config_route_736 + r"\SidStars"):
+                        shutil.rmtree(pmdg_config_route_736 + r"\SidStars")
+                    elif os.path.exists(pmdg_config_route_736 + r"\SIDSTARS"):
+                        shutil.rmtree(pmdg_config_route_736 + r"\SIDSTARS")
+                
+                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + r"\NavData")
+                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + r"\SidStars")
                 else:
-                    tkinter.Tk().withdraw()
-                    tkinter.messagebox.showerror("The file you selected is not valid for PMDG navdata. Please restart this application and reselect a file.")
-                    sys.exit()
+                    print("PMDG B736 Not found in your community folder. We will skip this nav update.")
+            
+                if os.path.exists(msfs_community + r"\pmdg-aircraft-737"):
+                    print("PMDG B737 Found",(msfs_community + r"\pmdg-aircraft-737"))
+                    shutil.rmtree(pmdg_config_route_737 + r"\NavData")
+                
+                    if os.path.exists(pmdg_config_route_737 + r"\SidStars"):
+                        shutil.rmtree(pmdg_config_route_737 + r"\SidStars")
+                    elif os.path.exists(pmdg_config_route_737 + r"\SIDSTARS"):
+                        shutil.rmtree(pmdg_config_route_737 + r"\SIDSTARS")
+                
+                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + r"\NavData")
+                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + r"\SidStars")
+                else:
+                    print("PMDG B737 Not found in your community folder. We will skip this nav update.")
+            
+                if os.path.exists(msfs_community + r"\pmdg-aircraft-738"):
+                    print("PMDG B738 Found",(msfs_community + r"\pmdg-aircraft-738"))
+                    shutil.rmtree(pmdg_config_route_738 + r"\NavData")
+                
+                    if os.path.exists(pmdg_config_route_738 + r"\SidStars"):
+                        shutil.rmtree(pmdg_config_route_738 + r"\SidStars")
+                    elif os.path.exists(pmdg_config_route_738 + r"\SIDSTARS"):
+                        shutil.rmtree(pmdg_config_route_738 + r"\SIDSTARS")
+                
+                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + r"\NavData")
+                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + r"\SidStars")
+                else:
+                    print("PMDG B738 Not found in your community folder. We will skip this nav update.")
+            
+                if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
+                    print("PMDG B739 Found",(msfs_community + r"\pmdg-aircraft-739"))
+                    shutil.rmtree(pmdg_config_route_739 + r"\NavData")
+                
+                    if os.path.exists(pmdg_config_route_739 + r"\SidStars"):
+                        shutil.rmtree(pmdg_config_route_739 + r"\SidStars")
+                    elif os.path.exists(pmdg_config_route_739 + r"\SIDSTARS"):
+                        shutil.rmtree(pmdg_config_route_739 + r"\SIDSTARS")
+                
+                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + r"\NavData")
+                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + r"\SidStars")
+                else:
+                    print("PMDG B739 Not found in your community folder. We will skip this nav update.")
+                
+                shutil.rmtree(pmdg_nav_output_ph2)
+                print("Install complete.")
             else:
+                tkinter.Tk().withdraw()
+                tkinter.messagebox.showerror("The file you selected is not valid for PMDG navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
@@ -309,20 +326,20 @@ def fenix_install():
                     print("Decompression complete")
                     
                     print("Installing Navdata...")
-                    if os.path.isfile(fenix_nav_install_path + r".\cycle.json"):
-                        os.remove(fenix_nav_install_path + r".\cycle.json")
+                    if os.path.isfile(fenix_nav_install_path + r"\cycle.json"):
+                        os.remove(fenix_nav_install_path + r"\cycle.json")
                         print('Existing "cycle.json" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle.json", fenix_nav_install_path)
+                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle.json", fenix_nav_install_path)
                     print('Copied "cycle.json"')
-                    if os.path.isfile(fenix_nav_install_path + r".\cycle_info.txt"):
-                        os.remove(fenix_nav_install_path + r".\cycle_info.txt")
+                    if os.path.isfile(fenix_nav_install_path + r"\cycle_info.txt"):
+                        os.remove(fenix_nav_install_path + r"\cycle_info.txt")
                         print('Existing "cycle_info.txt" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\cycle_info.txt", fenix_nav_install_path)
+                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle_info.txt", fenix_nav_install_path)
                     print('Copied "cycle_info.txt"')
-                    if os.path.isfile(fenix_nav_install_path + r".\nd.db3"):
-                        os.remove(fenix_nav_install_path + r".\nd.db3")
+                    if os.path.isfile(fenix_nav_install_path + r"\nd.db3"):
+                        os.remove(fenix_nav_install_path + r"\nd.db3")
                         print('Existing "nd.db3" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r".\Navdata\nd.db3", fenix_nav_install_path)
+                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\nd.db3", fenix_nav_install_path)
                     print('Copied "nd.db3"')
                     shutil.rmtree(fenix_nav_output_ph2)
                     print("Install complete.")
