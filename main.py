@@ -51,18 +51,18 @@ def check_nav_version(MSFSpath):
         msfs_native_nav_version.config(text="MSFS Native: Navdata not detected")
     
     if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
-        check_nav_version_pmdg(msfs_community, 739)
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-739")
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-738"):
-        check_nav_version_pmdg(msfs_community, 738)
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-738")
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-737"):
-        check_nav_version_pmdg(msfs_community, 737)
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-737")
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
-        check_nav_version_pmdg(msfs_community, 736)
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
     else:
         pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
 
 def check_nav_version_pmdg(msfs_community, varient):
-    pmdg_path = msfs_community + r"\pmdg-aircraft-" + varient
+    pmdg_path = msfs_community + varient
     print(pmdg_path)
     if os.path.exists(pmdg_path):
         f = open(pmdg_path + r"\Config\NavData\Cycle.json")
