@@ -71,7 +71,7 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
         pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
         print("PMDG navdata version = AIRAC" + pmdg_navdata_version)
-        pmdg_nav_version.config(text="PMDG 737: AIRAC" + pmdg_navdata_version)
+        pmdg_nav_version.config(text="PMDG 737: AIRAC Cycle " + pmdg_navdata_version)
     else:
         pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
 
