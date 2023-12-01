@@ -341,7 +341,7 @@ def pmdg_install():
                 print("Install complete.")
             else:
                 tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("The file you selected is not valid for PMDG navdata. Please restart this application and reselect a file.")
+                tkinter.messagebox.showerror(message="The file you selected is not valid for PMDG navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
@@ -403,7 +403,7 @@ def fenix_install():
                     sys.exit()
             else:
                 tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("The file you selected is not valid for Fenix A320 navdata. Please restart this application and reselect a file.")
+                tkinter.messagebox.showerror(message="The file you selected is not valid for Fenix A320 navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
