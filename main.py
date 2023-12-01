@@ -49,9 +49,9 @@ def check_nav_version(MSFSpath):
         navigraph_navdata_version_H2 = navigraph_navdata_version_H1.replace(',', '')
         navigraph_navdata_version = navigraph_navdata_version_H2.strip('"')
         print("MSFS Native navdata version = " + navigraph_navdata_version)
-        msfs_native_nav_version.config(text="MSFS Native: " + navigraph_navdata_version)
+        msfs_native_nav_version.config(text="MSFS Native: " + navigraph_navdata_version, fg="green")
     else:
-        msfs_native_nav_version.config(text="MSFS Native: Navdata not detected")
+        msfs_native_nav_version.config(text="MSFS Native: Navdata not detected", fg="red")
     
     #PMDG 737 Navdata Version Check (All varient)
     if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
@@ -63,7 +63,7 @@ def check_nav_version(MSFSpath):
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
         check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
     else:
-        pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
+        pmdg_nav_version.config(text="PMDG 737: Navdata not detected", fg="red")
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
@@ -72,9 +72,9 @@ def check_nav_version(MSFSpath):
         fenix_navdata_version_H = fenix_navdata_version_F.replace('AIRAC cycle    : ', '')
         fenix_navdata_version = fenix_navdata_version_H.strip()
         print("Fenix A320 navdata version = AIRAC Cycle " + fenix_navdata_version)
-        fenix_nav_verison.config(text="Fenix A320: AIRAC Cycle " + fenix_navdata_version)
+        fenix_nav_verison.config(text="Fenix A320: AIRAC Cycle " + fenix_navdata_version, fg="green")
     else:
-        fenix_nav_verison.config(text="Fenix A320: Navdata not detected")
+        fenix_nav_verison.config(text="Fenix A320: Navdata not detected", fg="red")
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
@@ -84,9 +84,9 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
         pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
         print("PMDG navdata version = AIRAC Cycle " + pmdg_navdata_version)
-        pmdg_nav_version.config(text="PMDG 737: AIRAC Cycle " + pmdg_navdata_version)
+        pmdg_nav_version.config(text="PMDG 737: AIRAC Cycle " + pmdg_navdata_version, fg="green")
     else:
-        pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
+        pmdg_nav_version.config(text="PMDG 737: Navdata not detected", fg="red")
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
