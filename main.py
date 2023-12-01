@@ -31,11 +31,12 @@ def get_msfs_installed_path(msfs_opt_file):
     MSFSpathF = alltxt[MSFSpathL-1].strip()
     MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
     MSFSpath = MSFSpathH.strip('"')
+    check_nav_version(MSFSpath)
     print("MSFS Installed Path = " + MSFSpath)
     
     return MSFSpath
 
-'''def check_nav_version(MSFSpath):
+def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
     if os.path.exists(msfs_community + r"\navigraph-navdata"):
         f = open(msfs_community + r"\navigraph-navdata\manifest.json")
@@ -45,9 +46,11 @@ def get_msfs_installed_path(msfs_opt_file):
         navigraph_navdata_version_F = alltxt[navigraph_navdata_version_L-11].strip()
         navigraph_navdata_version_H1 = navigraph_navdata_version_F.replace('  "title": ', '')
         navigraph_navdata_version_H2 = navigraph_navdata_version_H1.replace(',', '')
-        navigraph_navdata_version = navigraph_navdata_version_H2.strip('"')
+        navigraph_navdata_version = navigraph_navdata_version_H2.strip()
         print("MSFS Native navdata version = " + navigraph_navdata_version)
-        msfs_native_nav_version.config(text=navigraph_navdata_version)'''
+        msfs_native_nav_version.config(text=navigraph_navdata_version)
+    else:
+        msfs_native_nav_version.config(text="Navdata not installed")
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
