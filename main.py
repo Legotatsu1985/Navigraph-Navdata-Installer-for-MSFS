@@ -69,7 +69,7 @@ def check_nav_version_pmdg(msfs_community, varient):
         alltxt = f.readlines()
         f.close()
         pmdg_navdata_version_L = len(alltxt)
-        pmdg_navdata_version_F = alltxt[pmdg_navdata_version_L+0].strip()
+        pmdg_navdata_version_F = alltxt.strip()
         pmdg_navdata_version_H1 = pmdg_navdata_version_F.replace('{"cycle":', '')
         pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
         pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
