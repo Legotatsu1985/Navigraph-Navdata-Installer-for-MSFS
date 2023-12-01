@@ -8,6 +8,25 @@ from tkinter import filedialog
 
 import rarfile
 
+def msfs_opt_file_get():
+    if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+        for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+            print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
+            open_opt(msfs_opt_file)
+    elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+        for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+            print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
+            open_opt(msfs_opt_file)
+    else:
+        tkinter.Tk().withdraw()
+        tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
+        msfs_opt_file = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
+
+def open_opt(msfs_opt_file):
+    f = open(msfs_opt_file, "r")
+    f.readlines()
+    f.close()
+
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
     print(checked)

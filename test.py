@@ -10,5 +10,5 @@ from tkinter import filedialog
 import rarfile
 
 f = open(r"C:\Users\Ryota\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt", "r")
-f.readlines()
-f.close
+alltxt = f.readlines()
+f.close()
