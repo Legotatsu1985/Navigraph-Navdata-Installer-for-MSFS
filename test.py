@@ -12,3 +12,7 @@ import rarfile
 f = open(r"C:\Users\Ryota\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt", "r")
 alltxt = f.readlines()
 f.close()
+MSFSpathL = len(alltxt)
+print(MSFSpathL)
+MSFSpathF = alltxt[MSFSpathL-1].strip()
+print(MSFSpathF)
