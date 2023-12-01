@@ -321,10 +321,10 @@ def fenix_install():
     else:
         return
 
+get_msfs_opt_file
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x250")
-get_msfs_opt_file
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
