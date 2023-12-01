@@ -22,7 +22,6 @@ def get_msfs_opt_file():
         tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
         msfs_opt_file = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
-
 def get_msfs_installed_path(msfs_opt_file):
     f = open(msfs_opt_file, "r")
     alltxt = f.readlines()
@@ -49,7 +48,35 @@ def check_nav_version(MSFSpath):
         print("MSFS Native navdata version = " + navigraph_navdata_version)
         msfs_native_nav_version.config(text="MSFS Native: " + navigraph_navdata_version)
     else:
-        msfs_native_nav_version.config(text="Navdata not installed")
+        msfs_native_nav_version.config(text="MSFS Native: Navdata not detected")
+    
+    if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
+        check_nav_version_pmdg(msfs_community, 739)
+    elif os.path.exists(msfs_community + r"\pmdg-aircraft-738"):
+        check_nav_version_pmdg(msfs_community, 738)
+    elif os.path.exists(msfs_community + r"\pmdg-aircraft-737"):
+        check_nav_version_pmdg(msfs_community, 737)
+    elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
+        check_nav_version_pmdg(msfs_community, 736)
+    else:
+        pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
+
+def check_nav_version_pmdg(msfs_community, varient):
+    pmdg_path = msfs_community + r"\pmdg-aircraft-" + varient
+    print(pmdg_path)
+    if os.path.exists(pmdg_path):
+        f = open(pmdg_path + r"\Config\NavData\Cycle.json")
+        alltxt = f.readlines()
+        f.close()
+        pmdg_navdata_version_L = len(alltxt)
+        pmdg_navdata_version_F = alltxt[pmdg_navdata_version_L].strip()
+        pmdg_navdata_version_H1 = pmdg_navdata_version_F.replace('{"cycle":', '')
+        pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
+        pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
+        print("PMDG navdata version = AIRAC" + pmdg_navdata_version)
+        pmdg_nav_version.config(text="PMDG 737: AIRAC" + pmdg_navdata_version)
+    else:
+        pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
