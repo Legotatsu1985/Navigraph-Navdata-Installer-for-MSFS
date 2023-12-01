@@ -8,24 +8,30 @@ from tkinter import filedialog
 
 import rarfile
 
-def msfs_opt_file_get():
+def get_msfs_opt_file():
     if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
             print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
-            open_opt(msfs_opt_file)
+            get_msfs_installed_path(msfs_opt_file)
     elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
         for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
             print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
-            open_opt(msfs_opt_file)
+            get_msfs_installed_path(msfs_opt_file)
     else:
         tkinter.Tk().withdraw()
         tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
         msfs_opt_file = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
-def open_opt(msfs_opt_file):
+def get_msfs_installed_path(msfs_opt_file):
     f = open(msfs_opt_file, "r")
-    f.readlines()
+    alltxt = f.readlines()
     f.close()
+    MSFSpathL = len(alltxt)
+    MSFSpathF = alltxt[MSFSpathL-1].strip()
+    MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+    MSFSpath = MSFSpathH.strip('"')
+    print("MSFS Installed Path = " + MSFSpath)
+    return MSFSpath
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
@@ -317,6 +323,7 @@ def fenix_install():
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x250")
+get_msfs_installed_path()
 tkinter.Label(root, justify="center", text='Slelect the checkbox you want to install, then press "Install".').pack()
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
