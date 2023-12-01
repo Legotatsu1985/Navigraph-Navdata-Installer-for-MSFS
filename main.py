@@ -127,11 +127,11 @@ def msfs_native_install():
                 print("Decompression complete.")
 
                 print("Installing Navdata...")#Communityフォルダーにすでにナビデータが存在する場合は削除
-                if os.path.exists(msfs_community + r".\navigraph-navdata"):
-                    shutil.rmtree(msfs_community + r".\navigraph-navdata")
+                if os.path.exists(msfs_community + r"\navigraph-navdata"):
+                    shutil.rmtree(msfs_community + r"\navigraph-navdata")
 
-                if os.path.exists(msfs_community + r".\navigraph-navdata-base"):
-                    shutil.rmtree(msfs_community + r".\navigraph-navdata-base")
+                if os.path.exists(msfs_community + r"\navigraph-navdata-base"):
+                    shutil.rmtree(msfs_community + r"\navigraph-navdata-base")
 
                 shutil.move(r".\msfs_native_nav_output\navigraph-navdata", msfs_community)#Communityフォルダーにディレクトリを移動
                 shutil.move(r".\msfs_native_nav_output\navigraph-navdata-base", msfs_community)
@@ -153,7 +153,7 @@ def msfs_native_install():
                 print("Install complete.")
             else:
                 tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("The file you selected is not valid as navdata. Please restart this application and reselect a file.")
+                tkinter.messagebox.showerror(message="The file you selected is not valid as navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
