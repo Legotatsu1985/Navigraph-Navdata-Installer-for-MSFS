@@ -393,8 +393,8 @@ msfs_native_checkbutton.pack()
 pmdg_checkbutton.pack()
 fenix_checkbutton.pack()
 msfs_native_nav_version.pack()
-pmdg_nav_version.pack()
-fenix_nav_verison.pack()
+pmdg_nav_version.pack
+fenix_nav_verison.pack
 install_button.pack()
 exit_button.pack()
 info_label.pack()
