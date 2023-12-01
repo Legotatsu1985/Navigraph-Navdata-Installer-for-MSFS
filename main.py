@@ -75,65 +75,83 @@ def install_confirmation(install_contents):
 
 def msfs_native_install():
     if msfs_native_checkbox.get() == 1:
-        msfs_native_nav_output = r".\msfs_native_nav_output" #引数定義（ナビデータ一時展開先フォルダー）
+        msfs_native_nav_output = r".\msfs_native_nav_output" #変数定義（ナビデータ一時展開先フォルダー）
         #↓ナビデータ一時解凍先フォルダーが存在する場合は削除↓
         if os.path.exists(msfs_native_nav_output):
             shutil.rmtree(msfs_native_nav_output)
-        #↓Communityフォルダー選択ダイアログ↓
-        tkinter.Tk().withdraw()
-        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','Select the MSFS Community folder in next dialog.') == True:
-            msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title="Select the MSFS Community folder")
-            if msfs_community == "":
-                tkinter.Tk().withdraw()
-                tkinter.messagebox.showerror("Error!", "An expection has been occured. Please restart the application.")
-                sys.exit()
-            print("Community folder = " + msfs_community)
-            #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
+        
+        #「UserCfg.opt」を検索、MSFSインストールパスを入手し、Communityフォルダーを定義
+        if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+            for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+                print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
+                f = open(msfs_opt_file, "r")
+                alltxt = f.readlines()
+                f.close()
+                MSFSpathL = len(alltxt)
+                MSFSpathF = alltxt[MSFSpathL-1].strip()
+                MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                MSFSpath = MSFSpathH.strip('"')
+                msfs_community = MSFSpath + r".\Community"
+        elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+            for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+                print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
+                f = open(msfs_opt_file, "r")
+                alltxt = f.readlines()
+                f.close()
+                MSFSpathL = len(alltxt)
+                MSFSpathF = alltxt[MSFSpathL-1].strip()
+                MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                MSFSpath = MSFSpathH.strip('"')
+                msfs_community = MSFSpath + r".\Community"
+        else:
             tkinter.Tk().withdraw()
-            if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-msfs2020-airac-cycle-2310-rev-1.rar"') == True:
-                msfs_native_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(MSFS Native)")
-                msfs_native_nav_rar_basename = os.path.basename(msfs_native_nav_rar)
-                if 'navigraph-navdata-msfs2020-airac-cycle-' in msfs_native_nav_rar_basename:
-                
-                    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+            tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the Community folder. Please select your Community folder in next dialog.')
+            msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
+        
+        #↓MSFS2020本体専用ナビデータRARファイル選択ダイアログ↓
+        tkinter.Tk().withdraw()
+        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for MSFS','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-msfs2020-airac-cycle-2310-rev-1.rar"') == True:
+            msfs_native_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(MSFS Native)")
+            msfs_native_nav_rar_basename = os.path.basename(msfs_native_nav_rar)
+            if 'navigraph-navdata-msfs2020-airac-cycle-' in msfs_native_nav_rar_basename:
+            
+                print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
 
-                    rarfile.UNRAR_TOOL=r".\UnRAR.exe"#解凍ツール選択（同フォルダに格納済み）
+                rarfile.UNRAR_TOOL=r".\UnRAR.exe"#解凍ツール選択（同フォルダに格納済み）
 
-                    rf = rarfile.RarFile(msfs_native_nav_rar)#ナビデータ解凍
-                    rf.extractall("msfs_native_nav_output")
+                rf = rarfile.RarFile(msfs_native_nav_rar)#ナビデータ解凍
+                rf.extractall("msfs_native_nav_output")
 
-                    print("Decompression complete.")
+                print("Decompression complete.")
 
-                    print("Installing Navdata...")#Communityフォルダーにすでにナビデータが存在する場合は削除
-                    if os.path.exists(msfs_community + r".\navigraph-navdata"):
-                        shutil.rmtree(msfs_community + r".\navigraph-navdata")
+                print("Installing Navdata...")#Communityフォルダーにすでにナビデータが存在する場合は削除
+                if os.path.exists(msfs_community + r".\navigraph-navdata"):
+                    shutil.rmtree(msfs_community + r".\navigraph-navdata")
 
-                    if os.path.exists(msfs_community + r".\navigraph-navdata-base"):
-                        shutil.rmtree(msfs_community + r".\navigraph-navdata-base")
+                if os.path.exists(msfs_community + r".\navigraph-navdata-base"):
+                    shutil.rmtree(msfs_community + r".\navigraph-navdata-base")
 
-                    shutil.move(r".\msfs_native_nav_output\navigraph-navdata", msfs_community)#Communityフォルダーにディレクトリを移動
-                    shutil.move(r".\msfs_native_nav_output\navigraph-navdata-base", msfs_community)
+                shutil.move(r".\msfs_native_nav_output\navigraph-navdata", msfs_community)#Communityフォルダーにディレクトリを移動
+                shutil.move(r".\msfs_native_nav_output\navigraph-navdata-base", msfs_community)
 
-                    print('Copying "Content.xml"...')#「UserCfg.opt」ファイルがあるディレクトリを検索（MSストア版とSteam版）
-                    if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
-                        for msfs_package in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\Content.xml'):
-                            print(msfs_package)
-                    elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
-                        for msfs_package in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\Content.xml'):
-                            print(msfs_package)
-                    else:
-                        tkinter.Tk().withdraw()
-                        tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
-                        msfs_package = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
-
-                    shutil.move(r'.\msfs_native_nav_output\Content.xml', msfs_package)#「Content.xml」ファイルをコピー
-                    shutil.rmtree(msfs_native_nav_output)#ナビデータ一時解凍先フォルダーを消去
-                    print("Install complete.")
+                print('Copying "Content.xml"...')#「UserCfg.opt」ファイルがあるディレクトリを検索（MSストア版とSteam版）
+                if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+                    for msfs_package in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\Content.xml'):
+                        print(msfs_package)
+                elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+                    for msfs_package in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\Content.xml'):
+                        print(msfs_package)
                 else:
                     tkinter.Tk().withdraw()
-                    tkinter.messagebox.showerror("The file you selected is not valid as navdata. Please restart this application and reselect a file.")
-                    sys.exit()
+                    tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
+                    msfs_package = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
+
+                shutil.move(r'.\msfs_native_nav_output\Content.xml', msfs_package)#「Content.xml」ファイルをコピー
+                shutil.rmtree(msfs_native_nav_output)#ナビデータ一時解凍先フォルダーを消去
+                print("Install complete.")
             else:
+                tkinter.Tk().withdraw()
+                tkinter.messagebox.showerror("The file you selected is not valid as navdata. Please restart this application and reselect a file.")
                 sys.exit()
         else:
             sys.exit()
