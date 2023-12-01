@@ -83,7 +83,6 @@ def msfs_native_install():
         #「UserCfg.opt」を検索、MSFSインストールパスを入手し、Communityフォルダーを定義
         if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
             for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
-                print("UserCfg.opt found " + msfs_opt_file + "(MS Store Version)")
                 f = open(msfs_opt_file, "r")
                 alltxt = f.readlines()
                 f.close()
@@ -95,7 +94,6 @@ def msfs_native_install():
                 print("Community folder path = " + msfs_community)
         elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
             for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
-                print("UserCfg.opt found " + msfs_opt_file + "(Steam Version)")
                 f = open(msfs_opt_file, "r")
                 alltxt = f.readlines()
                 f.close()
