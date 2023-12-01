@@ -373,7 +373,6 @@ def fenix_install():
     else:
         return
 
-get_msfs_opt_file()
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x250")
@@ -390,6 +389,7 @@ pmdg_nav_version = tkinter.Label(root)
 pmdg_nav_version.pack()
 fenix_nav_verison = tkinter.Label(root)
 fenix_nav_verison.pack()
+get_msfs_opt_file()
 install_button = tkinter.Button(root, text="Install", command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
