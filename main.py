@@ -38,6 +38,7 @@ def get_msfs_installed_path(msfs_opt_file):
 
 def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
+    #MSFS Native Navdata Version Check
     if os.path.exists(msfs_community + r"\navigraph-navdata"):
         f = open(msfs_community + r"\navigraph-navdata\manifest.json")
         alltxt = f.readlines()
@@ -52,6 +53,7 @@ def check_nav_version(MSFSpath):
     else:
         msfs_native_nav_version.config(text="MSFS Native: Navdata not detected")
     
+    #PMDG 737 Navdata Version Check (All varient)
     if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
         check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-739")
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-738"):
@@ -62,6 +64,17 @@ def check_nav_version(MSFSpath):
         check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
     else:
         pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
+    
+    #Fenix A320 Navdata Version Check
+    fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
+    if os.path.exists(fenix_nav_install_path):
+        fenix_navdata_version_F = linecache.getline(fenix_nav_install_path + r"\cycle_info.txt", 1).rstrip('\n')
+        fenix_navdata_version_H = fenix_navdata_version_F.replace('AIRAC cycle    : ', '')
+        fenix_navdata_version = fenix_navdata_version_H.strip()
+        print("Fenix A320 navdata version = AIRAC Cycle " + fenix_navdata_version)
+        fenix_nav_verison.config(text="Fenix A320: AIRAC Cycle " + fenix_navdata_version)
+    else:
+        fenix_nav_verison.config(text="Fenix A320: Navdata not detected")
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
@@ -71,7 +84,7 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_navdata_version_H1 = pmdg_navdata_version_F.replace('{"cycle":', '')
         pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
         pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
-        print("PMDG navdata version = AIRAC" + pmdg_navdata_version)
+        print("PMDG navdata version = AIRAC Cycle " + pmdg_navdata_version)
         pmdg_nav_version.config(text="PMDG 737: AIRAC Cycle " + pmdg_navdata_version)
     else:
         pmdg_nav_version.config(text="PMDG 737: Navdata not detected")
