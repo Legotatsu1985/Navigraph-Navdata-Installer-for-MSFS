@@ -321,7 +321,7 @@ def fenix_install():
     else:
         return
 
-get_msfs_opt_file
+get_msfs_opt_file()
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x250")
