@@ -200,7 +200,13 @@ def msfs_native_install():
                     tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
                     msfs_package = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
-                shutil.move(r'.\msfs_native_nav_output\Content.xml', msfs_package)#「Content.xml」ファイルをコピー
+                if shutil.move(r'.\msfs_native_nav_output\Content.xml', msfs_package):
+                    print('"Content.xml copied."')#「Content.xml」ファイルをコピー
+                else:
+                    print('Could not copy "Content.xml" file to the MSFS folder')
+                    tkinter.Tk().withdraw()
+                    tkinter.messagebox.showerror(message='Could not copy "Content.xml" to your MSFS folder. Please copy it manually. (This is because "Content.xml" is not existed in your MSFS folder.)')
+                
                 shutil.rmtree(msfs_native_nav_output)#ナビデータ一時解凍先フォルダーを消去
                 print("Install complete.")
             else:
