@@ -179,13 +179,13 @@ def check_nav_version(MSFSpath):
             if current_date >= fenix_current_airac_start_time:
                 if current_date <= fenix_current_airac_end_time:
                     print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Valid)")
-                    fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number, fg="green")
+                    fenix_nav_version.config(text="AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number, fg="green")
                 else:
                     print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Invalid)")
-                    fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Outdated)", fg="red")
+                    fenix_nav_version.config(text="AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Outdated)", fg="red")
             else:
                 print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Invalid)")
-                fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Outdated)", fg="red")
+                fenix_nav_version.config(text="AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Outdated)", fg="red")
         else:
             fenix_nav_version.config(text="Navdata not detected (Aicraft installed)", fg="red")
     else:
