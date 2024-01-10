@@ -39,17 +39,18 @@ def get_msfs_installed_path(msfs_opt_file):
 def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
     #MSFS Native Navdata Version Check
-    if os.path.exists(msfs_community + r"\navigraph-navdata"):
-        f = open(msfs_community + r"\navigraph-navdata\manifest.json")
-        alltxt = f.readlines()
-        f.close()
-        navigraph_navdata_version_L = len(alltxt)
-        navigraph_navdata_version_F = alltxt[navigraph_navdata_version_L-12].strip()
-        navigraph_navdata_version_H1 = navigraph_navdata_version_F.replace('"title": ', '')
-        navigraph_navdata_version_H2 = navigraph_navdata_version_H1.replace(',', '')
-        navigraph_navdata_version = navigraph_navdata_version_H2.strip('"')
-        print("MSFS Native navdata version = " + navigraph_navdata_version)
-        msfs_native_nav_version.config(text=navigraph_navdata_version, fg="green")
+    if os.path.exists(msfs_community + r"\navigraph-navdata-base"):
+        cycle_file_path = msfs_community + r"\navigraph-navdata-base\ContentInfo\navigraph-navdata\cycle.json"
+        with open(cycle_file_path) as f:
+            lines = f.read().split(',')
+        
+        get_msfs_current_airac_fromlist = lines[3]
+        msfs_current_airac_number = get_msfs_current_airac_fromlist[9:13]
+        get_msfs_current_airac_rev_fromlist = lines[4]
+        msfs_current_airac_rev_number = get_msfs_current_airac_rev_fromlist[11:12]
+        msfs_native_nav_version_raw_txt = ["AIRAC Cycle", msfs_current_airac_number, "rev", msfs_current_airac_rev_number]
+        print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt)
+        msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt, fg="green")
     else:
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
