@@ -267,7 +267,7 @@ def pmdg_install():
                 print(pmdg_config_route_738)
                 print(pmdg_config_route_739)
                 
-                if os.path.exists(pmdg_config_route_736 or pmdg_config_route_737 or pmdg_config_route_738 or pmdg_config_route_739):
+                if os.path.exists(pmdg_config_route_736 or pmdg_config_route_737 or pmdg_config_route_738 or pmdg_config_route_739) == True:
                     print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
                 
                     if os.path.exists(pmdg_nav_output_ph1):
