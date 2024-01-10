@@ -6,6 +6,7 @@ import sys
 import tkinter
 import tkinter.messagebox
 from tkinter import filedialog
+import datetime
 
 import rarfile
 
@@ -44,13 +45,31 @@ def check_nav_version(MSFSpath):
         with open(cycle_file_path) as f:
             lines = f.read().split(',')
         
+        #Get current AIRAC Version of MSFS Native navdata
         get_msfs_current_airac_fromlist = lines[3]
         msfs_current_airac_number = get_msfs_current_airac_fromlist[9:13]
         get_msfs_current_airac_rev_fromlist = lines[4]
         msfs_current_airac_rev_number = get_msfs_current_airac_rev_fromlist[11:12]
         msfs_native_nav_version_raw_txt = "AIRAC Cycle " + msfs_current_airac_number + " rev." + msfs_current_airac_rev_number
-        print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt)
-        msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt, fg="green")
+        
+        #Get current AIRAC Start date
+        get_airac_start_date_fromlist = lines[5]
+        raw_airac_start_date = get_airac_start_date_fromlist[13:21]
+        current_airac_start_year = raw_airac_start_date[:4]
+        current_airac_start_month = raw_airac_start_date[4:6]
+        current_airac_start_day = raw_airac_start_date[6:]
+        print(current_airac_start_year + "/" + current_airac_start_month + "/" + current_airac_start_day)
+        current_airac_start_time = datetime.date(year=int(current_airac_start_year), month=int(current_airac_start_month), day=int(current_airac_start_day))
+
+        #Get current AIRAC End date
+        get_airac_end_date_fromlist = lines[6]
+        raw_airac_end_date = get_airac_end_date_fromlist[11:19]
+        current_airac_end_year = raw_airac_end_date[:4]
+        current_airac_end_month = raw_airac_end_date[4:6]
+        current_airac_end_day = raw_airac_end_date[6:]
+        print(current_airac_end_year + "/" + current_airac_end_month + "/" + current_airac_end_day)
+        current_airac_end_time = datetime.date(year=int(current_airac_end_year), month=int(current_airac_end_month), day=int(current_airac_end_day))
+        
     else:
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
