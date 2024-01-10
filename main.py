@@ -183,9 +183,7 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_airac_valid_end_day = pmdg_airac_valid_date[14:16]
 
         pmdg_current_airac_start_time = datetime.date(year=int(pmdg_airac_valid_start_year), month=int(pmdg_airac_valid_start_month), day=int(pmdg_airac_valid_start_day))
-        print(pmdg_current_airac_start_time)
         pmdg_current_airac_end_time = datetime.date(year=int(pmdg_airac_valid_end_year), month=int(pmdg_airac_valid_end_month), day=int(pmdg_airac_valid_end_day))
-        print(pmdg_current_airac_end_time)
 
         current_date = datetime.date.today()
         if current_date >= pmdg_current_airac_start_time:
