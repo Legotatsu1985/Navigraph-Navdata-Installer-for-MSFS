@@ -185,9 +185,9 @@ def check_nav_version(MSFSpath):
                 print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Invalid)")
                 fenix_nav_version.config(text="AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_rev_number + " (Outdated)", fg="red")
         else:
-            fenix_nav_version.config(text="Navdata not detected (Aicraft installed)", fg="red")
+            fenix_nav_version.config(text="Navdata not detected", fg="red")
     else:
-        fenix_nav_version.config(text="Navdata not detected (Aircraft not installed)", fg="red")
+        fenix_nav_version.config(text="Navdata not detected", fg="red")
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
