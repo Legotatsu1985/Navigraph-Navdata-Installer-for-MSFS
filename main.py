@@ -49,9 +49,9 @@ def check_nav_version(MSFSpath):
         navigraph_navdata_version_H2 = navigraph_navdata_version_H1.replace(',', '')
         navigraph_navdata_version = navigraph_navdata_version_H2.strip('"')
         print("MSFS Native navdata version = " + navigraph_navdata_version)
-        msfs_native_nav_version.config(text="MSFS Native: " + navigraph_navdata_version, fg="green")
+        msfs_native_nav_version.config(text=navigraph_navdata_version, fg="green")
     else:
-        msfs_native_nav_version.config(text="MSFS Native: Navdata not detected", fg="red")
+        msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
     #PMDG 737 Navdata Version Check (All varient)
     if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
@@ -63,7 +63,7 @@ def check_nav_version(MSFSpath):
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
         check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
     else:
-        pmdg_nav_version.config(text="PMDG 737: Navdata not detected", fg="red")
+        pmdg_nav_version.config(text="Navdata not detected", fg="red")
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
@@ -72,9 +72,9 @@ def check_nav_version(MSFSpath):
         fenix_navdata_version_H = fenix_navdata_version_F.replace('AIRAC cycle    : ', '')
         fenix_navdata_version = fenix_navdata_version_H.strip()
         print("Fenix A320 navdata version = AIRAC Cycle " + fenix_navdata_version)
-        fenix_nav_verison.config(text="Fenix A320: AIRAC Cycle " + fenix_navdata_version, fg="green")
+        fenix_nav_verison.config(text="AIRAC Cycle " + fenix_navdata_version, fg="green")
     else:
-        fenix_nav_verison.config(text="Fenix A320: Navdata not detected", fg="red")
+        fenix_nav_verison.config(text="Navdata not detected", fg="red")
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
@@ -84,9 +84,9 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
         pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
         print("PMDG navdata version = AIRAC Cycle " + pmdg_navdata_version)
-        pmdg_nav_version.config(text="PMDG 737: AIRAC Cycle " + pmdg_navdata_version, fg="green")
+        pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_navdata_version, fg="green")
     else:
-        pmdg_nav_version.config(text="PMDG 737: Navdata not detected", fg="red")
+        pmdg_nav_version.config(text="Navdata not detected", fg="red")
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
@@ -427,6 +427,9 @@ msfs_native_checkbutton = tkinter.Checkbutton(root, text="MSFS Native Navdata", 
 pmdg_checkbutton = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox)
 fenix_checkbutton = tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox)
 all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
+msfs_native_nav_version_fixed_label = tkinter.Label(root, justify="left", text="MSFS Native:")
+pmdg_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
+fenix_nav_verison_fixed_label = tkinter.Label(root, justify="left", text="Fenix A320:")
 msfs_native_nav_version = tkinter.Label(root, justify="left")
 pmdg_nav_version = tkinter.Label(root, justify="left")
 fenix_nav_verison = tkinter.Label(root, justify="left")
@@ -450,14 +453,23 @@ fenix_checkbutton.grid(
 all_navdata_installed_version_info_label.grid(
     column=0, columnspan=6, row=4, sticky=tkinter.W
 )
+msfs_native_nav_version_fixed_label.grid(
+    column=0, row=5, sticky=tkinter.E
+)
 msfs_native_nav_version.grid(
-    column=0, row=5, sticky=tkinter.W
+    column=1, row=5, sticky=tkinter.W
+)
+pmdg_nav_version_fixed_label.grid(
+    column=0, row=6, sticky=tkinter.E
 )
 pmdg_nav_version.grid(
-    column=0, row=6, sticky=tkinter.W
+    column=1, row=6, sticky=tkinter.W
+)
+fenix_nav_verison_fixed_label.grid(
+    column=0, row=7, sticky=tkinter.E
 )
 fenix_nav_verison.grid(
-    column=0, row=7, sticky=tkinter.W
+    column=1, row=7, sticky=tkinter.W
 )
 get_msfs_opt_file()
 install_button.grid(
