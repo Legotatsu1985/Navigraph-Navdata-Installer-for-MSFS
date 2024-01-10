@@ -423,9 +423,12 @@ instruction_label = tkinter.Label(root, justify="center", text='[Select the chec
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
-msfs_native_checkbutton = tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_checkbox)
-pmdg_checkbutton = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox)
-fenix_checkbutton = tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox)
+msfs_native_checkbutton = tkinter.Checkbutton(root, variable=msfs_native_checkbox)
+pmdg_checkbutton = tkinter.Checkbutton(root, variable=pmdg_checkbox)
+fenix_checkbutton = tkinter.Checkbutton(root, variable=fenix_checkbox)
+msfs_native_checkbutton_label = tkinter.Label(root, justify="left", text="MSFS Native Navdata")
+pmdg_checkbutton_label = tkinter.Label(root, justify="left", text="PMDG 737 Navdata")
+fenix_checkbutton_label = tkinter.Label(root, justify="left", text="Fenix A320 Navdata")
 all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
 msfs_native_nav_version_fixed_label = tkinter.Label(root, justify="left", text="MSFS Native:")
 pmdg_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
@@ -442,13 +445,22 @@ instruction_label.grid(
     column=0, columnspan=6, row=0, sticky=tkinter.W
 )
 msfs_native_checkbutton.grid(
-    column=0, row=1, sticky=tkinter.W
+    column=0, row=1, sticky=tkinter.E
+)
+msfs_native_checkbutton_label.grid(
+    column=1, row=1, sticky=tkinter.W
 )
 pmdg_checkbutton.grid(
-    column=0, row=2, sticky=tkinter.W
+    column=0, row=2, sticky=tkinter.E
+)
+pmdg_checkbutton_label.grid(
+    column=1, row=2, sticky=tkinter.W
 )
 fenix_checkbutton.grid(
-    column=0, row=3, sticky=tkinter.W
+    column=0, row=3, sticky=tkinter.E
+)
+fenix_checkbutton_label.grid(
+    column=1, row=3, sticky=tkinter.W
 )
 all_navdata_installed_version_info_label.grid(
     column=0, columnspan=2, row=4, sticky=tkinter.W
