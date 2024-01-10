@@ -97,14 +97,99 @@ def check_nav_version(MSFSpath):
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
-    if os.path.exists(fenix_nav_install_path):
-        fenix_navdata_version_F = linecache.getline(fenix_nav_install_path + r"\cycle_info.txt", 1).rstrip('\n')
-        fenix_navdata_version_H = fenix_navdata_version_F.replace('AIRAC cycle    : ', '')
-        fenix_navdata_version = fenix_navdata_version_H.strip()
-        print("Fenix A320 navdata version = AIRAC Cycle " + fenix_navdata_version)
-        fenix_nav_verison.config(text="AIRAC Cycle " + fenix_navdata_version, fg="green")
+    if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX320\aircraft.cfg"):
+        if os.path.exists(fenix_nav_install_path):
+            with open(fenix_nav_install_path) as f:
+                lines = f.read().splitlines()
+
+            get_line_fenix_airac_cycle = lines[0]
+            get_line_fenix_airac_rev = lines[1]
+            get_line_fenix_airac_valid_date = lines[2]
+
+            fenix_airac_cycle_number = get_line_fenix_airac_cycle[17:21] #AIRAC Cycle Number
+            fenix_airac_cycle_number = get_line_fenix_airac_rev[17:18] #AIRAC Cycle Revision Number
+            fenix_airac_valid_date = get_line_fenix_airac_valid_date[17:42] #AIRAC Cycle Valid date
+
+            fenix_airac_valid_start_year = fenix_airac_valid_date[7:11]
+
+            fenix_airac_valid_start_month_raw = fenix_airac_valid_date[3:6]
+            if fenix_airac_valid_start_month_raw == "JAN":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("JAN", "01")
+            elif fenix_airac_valid_start_month_raw == "FEB":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("FEB", "02")
+            elif fenix_airac_valid_start_month_raw == "MAR":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("MAR", "03")
+            elif fenix_airac_valid_start_month_raw == "APR":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("APR", "04")
+            elif fenix_airac_valid_start_month_raw == "MAY":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("MAY", "05")
+            elif fenix_airac_valid_start_month_raw == "JUN":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("JUN", "06")
+            elif fenix_airac_valid_start_month_raw == "JUL":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("JUL", "07")
+            elif fenix_airac_valid_start_month_raw == "AUG":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("AUG", "08")
+            elif fenix_airac_valid_start_month_raw == "SEP":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("SEP", "09")
+            elif fenix_airac_valid_start_month_raw == "OCT":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("OCT", "10")
+            elif fenix_airac_valid_start_month_raw == "NOV":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("NOV", "11")
+            elif fenix_airac_valid_start_month_raw == "DEC":
+                fenix_airac_valid_start_month = fenix_airac_valid_start_month_raw.replace("DEC", "12")
+
+            fenix_airac_valid_start_day = fenix_airac_valid_date[:2]
+
+            fenix_airac_valid_end_year = fenix_airac_valid_date[21:]
+
+            fenix_airac_valid_end_month_raw = fenix_airac_valid_date[17:20]
+            if fenix_airac_valid_end_month_raw == "JAN":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("JAN", "01")
+            elif fenix_airac_valid_end_month_raw == "FEB":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("FEB", "02")
+            elif fenix_airac_valid_end_month_raw == "MAR":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("MAR", "03")
+            elif fenix_airac_valid_end_month_raw == "APR":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("APR", "04")
+            elif fenix_airac_valid_end_month_raw == "MAY":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("MAY", "05")
+            elif fenix_airac_valid_end_month_raw == "JUN":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("JUN", "06")
+            elif fenix_airac_valid_end_month_raw == "JUL":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("JUL", "07")
+            elif fenix_airac_valid_end_month_raw == "AUG":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("AUG", "08")
+            elif fenix_airac_valid_end_month_raw == "SEP":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("SEP", "09")
+            elif fenix_airac_valid_end_month_raw == "OCT":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("OCT", "10")
+            elif fenix_airac_valid_end_month_raw == "NOV":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("NOV", "11")
+            elif fenix_airac_valid_end_month_raw == "DEC":
+                fenix_airac_valid_end_month = fenix_airac_valid_end_month_raw.replace("DEC", "12")
+
+            fenix_airac_valid_end_day = fenix_airac_valid_date[14:16]
+
+            fenix_current_airac_start_time = datetime.date(year=int(fenix_airac_valid_start_year), month=int(fenix_airac_valid_start_month), day=int(fenix_airac_valid_start_day))
+            print(fenix_current_airac_start_time)
+            fenix_current_airac_end_time = datetime.date(year=int(fenix_airac_valid_end_year), month=int(fenix_airac_valid_end_month), day=int(fenix_airac_valid_end_day))
+            print(fenix_current_airac_end_time)
+
+            current_date = datetime.date.today()
+            if current_date >= fenix_current_airac_start_time:
+                if current_date <= fenix_current_airac_end_time:
+                    print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_cycle_number + " (Valid)")
+                    fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number, fg="green")
+                else:
+                    print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_cycle_number + " (Invalid)")
+                    fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number + " (Outdated)", fg="red")
+            else:
+                print("Fenix A320 navdata version = AIRAC Cycle " + fenix_airac_cycle_number + " rev." + fenix_airac_cycle_number + " (Invalid)")
+                fenix_nav_version.config(text="AIRAC Cycle" + fenix_airac_cycle_number + " (Outdated)", fg="red")
+        else:
+            fenix_nav_version.config(text="Navdata not detected (Aicraft installed)", fg="red")
     else:
-        fenix_nav_verison.config(text="Navdata not detected", fg="red")
+        fenix_nav_version.config(text="Navdata not detected (Aircraft not installed)", fg="red")
 
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
@@ -188,13 +273,13 @@ def check_nav_version_pmdg(msfs_community, varient):
         current_date = datetime.date.today()
         if current_date >= pmdg_current_airac_start_time:
             if current_date <= pmdg_current_airac_end_time:
-                print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
+                print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
                 pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number,  fg="green")
             else:
-                print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+                print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
                 pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
         else:
-            print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+            print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
             pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
     else:
         pmdg_nav_version.config(text="Navdata not detected", fg="red")
@@ -611,10 +696,10 @@ fenix_checkbutton_label = tkinter.Label(root, justify="left", text="Fenix A320 N
 all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
 msfs_native_nav_version_fixed_label = tkinter.Label(root, justify="left", text="MSFS Native:")
 pmdg_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
-fenix_nav_verison_fixed_label = tkinter.Label(root, justify="left", text="Fenix A320:")
+fenix_nav_version_fixed_label = tkinter.Label(root, justify="left", text="Fenix A320:")
 msfs_native_nav_version = tkinter.Label(root, justify="left")
 pmdg_nav_version = tkinter.Label(root, justify="left")
-fenix_nav_verison = tkinter.Label(root, justify="left")
+fenix_nav_version = tkinter.Label(root, justify="left")
 install_button = tkinter.Button(root, text="Install", width=15, command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", width=15, command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
@@ -656,10 +741,10 @@ pmdg_nav_version_fixed_label.grid(
 pmdg_nav_version.grid(
     column=1, columnspan=2, row=6, sticky=tkinter.W
 )
-fenix_nav_verison_fixed_label.grid(
+fenix_nav_version_fixed_label.grid(
     column=0, row=7, sticky=tkinter.E
 )
-fenix_nav_verison.grid(
+fenix_nav_version.grid(
     column=1, columnspan=2, row=7, sticky=tkinter.W
 )
 get_msfs_opt_file()
