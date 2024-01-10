@@ -21,7 +21,7 @@ def get_msfs_opt_file():
             get_msfs_installed_path(msfs_opt_file)
     else:
         tkinter.Tk().withdraw()
-        tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the folder contains "UserCfg.opt" file in next dialog.')
+        tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the file "UserCfg.opt". Please select the MSFS folder contains "UserCfg.opt" file in next dialog.')
         msfs_opt_file = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select the folder contains "UserCfg.opt" file.')
 
 def get_msfs_installed_path(msfs_opt_file):
@@ -419,30 +419,57 @@ def fenix_install():
 root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("500x300")
-tkinter.Label(root, justify="center", text='[Select the checkbox you want to install, then press "Install".]').pack()
+instruction_label = tkinter.Label(root, justify="center", text='[Select the checkbox you want to install, then press "Install".]')
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
 msfs_native_checkbutton = tkinter.Checkbutton(root, text="MSFS Native Navdata", variable=msfs_native_checkbox)
 pmdg_checkbutton = tkinter.Checkbutton(root, text="PMDG 737 Navdata", variable=pmdg_checkbox)
 fenix_checkbutton = tkinter.Checkbutton(root, text="Fenix A320 Navdata", variable=fenix_checkbox)
+all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
 msfs_native_nav_version = tkinter.Label(root, justify="left")
 pmdg_nav_version = tkinter.Label(root, justify="left")
 fenix_nav_verison = tkinter.Label(root, justify="left")
 install_button = tkinter.Button(root, text="Install", command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
-version_label = tkinter.Label(root, text="v1.0.0", anchor=tkinter.SE)
-msfs_native_checkbutton.pack()
-pmdg_checkbutton.pack()
-fenix_checkbutton.pack()
-tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]').pack()
-msfs_native_nav_version.pack()
-pmdg_nav_version.pack()
-fenix_nav_verison.pack()
+version_label = tkinter.Label(root, text="v2.0.0", anchor=tkinter.SE)
+#UI配置↓
+instruction_label.grid(
+    column=0, columnspan=6, row=0, sticky=tkinter.W
+)
+msfs_native_checkbutton.grid(
+    column=1, row=0, sticky=tkinter.W
+)
+pmdg_checkbutton.grid(
+    column=2, row=0, sticky=tkinter.W
+)
+fenix_checkbutton.grid(
+    column=3, row=0, sticky=tkinter.W
+)
+all_navdata_installed_version_info_label.grid(
+    column=4, columnspan=6, row=0, sticky=tkinter.W
+)
+msfs_native_nav_version.grid(
+    column=5, row=0, sticky=tkinter.W
+)
+pmdg_nav_version.grid(
+    column=6, row=0, sticky=tkinter.W
+)
+fenix_nav_verison.grid(
+    column=7, row=0, sticky=tkinter.W
+)
 get_msfs_opt_file()
-install_button.pack()
-exit_button.pack()
-info_label.pack()
-version_label.pack()
+install_button.grid(
+    column=8, row=0, sticky=tkinter.W
+)
+exit_button.grid(
+    column=8, row=1, sticky=tkinter.W
+)
+info_label.grid(
+    column=9, columnspan=6, row=0, sticky=tkinter.W
+)
+version_label.grid(
+    column=10, row=0, sticky=tkinter.W
+)
 root.mainloop()
