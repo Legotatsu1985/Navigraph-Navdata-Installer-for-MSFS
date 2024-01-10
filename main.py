@@ -58,7 +58,6 @@ def check_nav_version(MSFSpath):
         current_airac_start_year = raw_airac_start_date[:4]
         current_airac_start_month = raw_airac_start_date[4:6]
         current_airac_start_day = raw_airac_start_date[6:]
-        print(current_airac_start_year + "/" + current_airac_start_month + "/" + current_airac_start_day)
         current_airac_start_time = datetime.date(year=int(current_airac_start_year), month=int(current_airac_start_month), day=int(current_airac_start_day))
 
         #Get current AIRAC End date
@@ -67,16 +66,18 @@ def check_nav_version(MSFSpath):
         current_airac_end_year = raw_airac_end_date[:4]
         current_airac_end_month = raw_airac_end_date[4:6]
         current_airac_end_day = raw_airac_end_date[6:]
-        print(current_airac_end_year + "/" + current_airac_end_month + "/" + current_airac_end_day)
         current_airac_end_time = datetime.date(year=int(current_airac_end_year), month=int(current_airac_end_month), day=int(current_airac_end_day))
         
         current_date = datetime.date.today()
         if current_date >= current_airac_start_time:
             if current_date <= current_airac_end_time:
+                print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Valid)")
                 msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt, fg="green")
             else:
+                print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Invalid)")
                 msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + "Outdated", fg="red")
         else:
+            print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Invalid)")
             msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + "Outdated", fg="red")
     else:
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
