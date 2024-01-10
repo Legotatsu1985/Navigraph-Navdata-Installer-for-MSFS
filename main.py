@@ -75,10 +75,10 @@ def check_nav_version(MSFSpath):
                 msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt, fg="green")
             else:
                 print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Invalid)")
-                msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + "Outdated", fg="red")
+                msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + " (Outdated)", fg="red")
         else:
             print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Invalid)")
-            msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + "Outdated", fg="red")
+            msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + " (Outdated)", fg="red")
     else:
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
