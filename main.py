@@ -485,7 +485,7 @@ fenix_nav_verison.grid(
 )
 get_msfs_opt_file()
 install_button.grid(
-    column=0, row=8, sticky=tkinter.W
+    column=0, row=8, sticky=tkinter.E
 )
 exit_button.grid(
     column=1, row=8, sticky=tkinter.W
