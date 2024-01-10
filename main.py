@@ -262,10 +262,6 @@ def pmdg_install():
                 pmdg_config_route_737 = msfs_community + r"\pmdg-aircraft-737\Config"
                 pmdg_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
                 pmdg_config_route_739 = msfs_community + r"\pmdg-aircraft-739\Config"
-                print(pmdg_config_route_736)
-                print(pmdg_config_route_737)
-                print(pmdg_config_route_738)
-                print(pmdg_config_route_739)
                 
                 print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
             
