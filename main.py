@@ -491,9 +491,9 @@ exit_button.grid(
     column=1, row=8, sticky=tkinter.W
 )
 info_label.grid(
-    column=0, columnspan=2, row=9, sticky=tkinter.W
+    column=0, columnspan=2, row=9
 )
 version_label.grid(
-    column=0, columnspan=2, row=10, sticky=tkinter.W
+    column=0, columnspan=2, row=10
 )
 root.mainloop()
