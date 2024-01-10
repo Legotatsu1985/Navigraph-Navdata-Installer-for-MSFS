@@ -436,7 +436,7 @@ fenix_nav_verison_fixed_label = tkinter.Label(root, justify="left", text="Fenix 
 msfs_native_nav_version = tkinter.Label(root, justify="left")
 pmdg_nav_version = tkinter.Label(root, justify="left")
 fenix_nav_verison = tkinter.Label(root, justify="left")
-install_button = tkinter.Button(root, text="Install", width=300, command=on_nav_install_select_button_click)
+install_button = tkinter.Button(root, text="Install", width=30, command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
 version_label = tkinter.Label(root, text="v2.0.0", anchor=tkinter.SE)
