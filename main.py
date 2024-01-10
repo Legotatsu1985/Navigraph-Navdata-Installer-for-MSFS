@@ -451,7 +451,7 @@ fenix_checkbutton.grid(
     column=0, row=3, sticky=tkinter.W
 )
 all_navdata_installed_version_info_label.grid(
-    column=0, columnspan=6, row=4, sticky=tkinter.W
+    column=0, columnspan=2, row=4, sticky=tkinter.W
 )
 msfs_native_nav_version_fixed_label.grid(
     column=0, row=5, sticky=tkinter.E
