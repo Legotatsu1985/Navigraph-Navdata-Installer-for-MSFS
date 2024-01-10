@@ -439,37 +439,37 @@ instruction_label.grid(
     column=0, columnspan=6, row=0, sticky=tkinter.W
 )
 msfs_native_checkbutton.grid(
-    column=1, row=0, sticky=tkinter.W
+    column=0, row=1, sticky=tkinter.W
 )
 pmdg_checkbutton.grid(
-    column=2, row=0, sticky=tkinter.W
+    column=0, row=2, sticky=tkinter.W
 )
 fenix_checkbutton.grid(
-    column=3, row=0, sticky=tkinter.W
+    column=0, row=3, sticky=tkinter.W
 )
 all_navdata_installed_version_info_label.grid(
-    column=4, columnspan=6, row=0, sticky=tkinter.W
+    column=0, columnspan=6, row=4, sticky=tkinter.W
 )
 msfs_native_nav_version.grid(
-    column=5, row=0, sticky=tkinter.W
+    column=0, row=5, sticky=tkinter.W
 )
 pmdg_nav_version.grid(
-    column=6, row=0, sticky=tkinter.W
+    column=0, row=6, sticky=tkinter.W
 )
 fenix_nav_verison.grid(
-    column=7, row=0, sticky=tkinter.W
+    column=0, row=7, sticky=tkinter.W
 )
 get_msfs_opt_file()
 install_button.grid(
-    column=8, row=0, sticky=tkinter.W
+    column=0, row=8, sticky=tkinter.W
 )
 exit_button.grid(
-    column=8, row=1, sticky=tkinter.W
+    column=1, row=8, sticky=tkinter.W
 )
 info_label.grid(
-    column=9, columnspan=6, row=0, sticky=tkinter.W
+    column=0, columnspan=6, row=9, sticky=tkinter.W
 )
 version_label.grid(
-    column=10, row=0, sticky=tkinter.W
+    column=0, row=10, sticky=tkinter.W
 )
 root.mainloop()
