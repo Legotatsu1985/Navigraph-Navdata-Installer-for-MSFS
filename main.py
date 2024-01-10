@@ -704,7 +704,7 @@ info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="
 version_label = tkinter.Label(root, text="v2.0.0", anchor=tkinter.SE)
 #UI配置↓
 instruction_label.grid(
-    column=1, columnspan=2, row=0
+    column=0, columnspan=2, row=0
 )
 msfs_native_checkbutton.grid(
     column=0, row=1, sticky=tkinter.E
