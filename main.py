@@ -48,7 +48,7 @@ def check_nav_version(MSFSpath):
         msfs_current_airac_number = get_msfs_current_airac_fromlist[9:13]
         get_msfs_current_airac_rev_fromlist = lines[4]
         msfs_current_airac_rev_number = get_msfs_current_airac_rev_fromlist[11:12]
-        msfs_native_nav_version_raw_txt = ["AIRAC Cycle", msfs_current_airac_number, "rev", msfs_current_airac_rev_number]
+        msfs_native_nav_version_raw_txt = "AIRAC Cycle " + msfs_current_airac_number + " rev." + msfs_current_airac_rev_number
         print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt)
         msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt, fg="green")
     else:
