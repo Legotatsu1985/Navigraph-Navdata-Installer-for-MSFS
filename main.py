@@ -442,7 +442,7 @@ info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="
 version_label = tkinter.Label(root, text="v2.0.0", anchor=tkinter.SE)
 #UI配置↓
 instruction_label.grid(
-    column=0, columnspan=2, row=0, sticky=tkinter.W
+    column=0, columnspan=2, row=0
 )
 msfs_native_checkbutton.grid(
     column=0, row=1, sticky=tkinter.E
@@ -463,7 +463,7 @@ fenix_checkbutton_label.grid(
     column=1, row=3, sticky=tkinter.W
 )
 all_navdata_installed_version_info_label.grid(
-    column=0, columnspan=2, row=4, sticky=tkinter.W
+    column=0, columnspan=2, row=4
 )
 msfs_native_nav_version_fixed_label.grid(
     column=0, row=5, sticky=tkinter.E
