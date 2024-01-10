@@ -473,47 +473,114 @@ def fenix_install():
             fenix_nav_rar_basename = os.path.basename(fenix_nav_rar)
             fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata" #Fenix A320 ナビデータのインストール先フォルダー
             if 'navigraph-navdata-installers-airac-cycle-' in fenix_nav_rar_basename:
-                if os.path.exists(fenix_nav_install_path):
-                    fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
-                    fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
-                    
-                    print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
-                    if os.path.exists(fenix_nav_output_ph1):
+                #「UserCfg.opt」を検索、MSFSインストールパスを入手し、Communityフォルダーを定義
+                if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+                    for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
+                        f = open(msfs_opt_file, "r")
+                        alltxt = f.readlines()
+                        f.close()
+                        MSFSpathL = len(alltxt)
+                        MSFSpathF = alltxt[MSFSpathL-1].strip()
+                        MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                        MSFSpath = MSFSpathH.strip('"')
+                        msfs_community = MSFSpath + r"\Community"
+                        print("Community folder path = " + msfs_community)
+                elif glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+                    for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Roaming\Microsoft Flight Simulator\UserCfg.opt'):
+                        f = open(msfs_opt_file, "r")
+                        alltxt = f.readlines()
+                        f.close()
+                        MSFSpathL = len(alltxt)
+                        MSFSpathF = alltxt[MSFSpathL-1].strip()
+                        MSFSpathH = MSFSpathF.replace("InstalledPackagesPath ", "")
+                        MSFSpath = MSFSpathH.strip('"')
+                        msfs_community = MSFSpath + r"\Community"
+                        print("Community folder path = " + msfs_community)
+                else:
+                    tkinter.Tk().withdraw()
+                    tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the Community folder. Please select your Community folder in next dialog.')
+                    msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
+                
+                if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX320\aircraft.cfg"):
+                    if os.path.exists(fenix_nav_install_path):
+                        fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
+                        fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
+                        
+                        print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                        if os.path.exists(fenix_nav_output_ph1):
+                            shutil.rmtree(fenix_nav_output_ph1)
+                        if os.path.exists(fenix_nav_output_ph2):
+                            shutil.rmtree(fenix_nav_output_ph2)
+                        
+                        rarfile.UNRAR_TOOL = r".\UnRAR.exe"
+                        
+                        rarfile.RarFile(fenix_nav_rar).extractall("fenix_nav_output_ph1")
+                        
+                        for fenix_nav_final_output in glob.glob(r".\fenix_nav_output_ph1\Navigraph AIRAC *\fenix_a320_*.rar"):
+                            print(fenix_nav_final_output)
+                        
+                        rarfile.RarFile(fenix_nav_final_output).extractall("fenix_nav_output_ph2")
+                        
                         shutil.rmtree(fenix_nav_output_ph1)
-                    if os.path.exists(fenix_nav_output_ph2):
+                        
+                        print("Decompression complete")
+                        
+                        print("Installing Navdata...")
+                        if os.path.isfile(fenix_nav_install_path + r"\cycle.json"):
+                            os.remove(fenix_nav_install_path + r"\cycle.json")
+                            print('Existing "cycle.json" deleted.')
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle.json", fenix_nav_install_path)
+                        print('Copied "cycle.json"')
+                        if os.path.isfile(fenix_nav_install_path + r"\cycle_info.txt"):
+                            os.remove(fenix_nav_install_path + r"\cycle_info.txt")
+                            print('Existing "cycle_info.txt" deleted.')
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle_info.txt", fenix_nav_install_path)
+                        print('Copied "cycle_info.txt"')
+                        if os.path.isfile(fenix_nav_install_path + r"\nd.db3"):
+                            os.remove(fenix_nav_install_path + r"\nd.db3")
+                            print('Existing "nd.db3" deleted.')
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\nd.db3", fenix_nav_install_path)
+                        print('Copied "nd.db3"')
                         shutil.rmtree(fenix_nav_output_ph2)
-                    
-                    rarfile.UNRAR_TOOL = r".\UnRAR.exe"
-                    
-                    rarfile.RarFile(fenix_nav_rar).extractall("fenix_nav_output_ph1")
-                    
-                    for fenix_nav_final_output in glob.glob(r".\fenix_nav_output_ph1\Navigraph AIRAC *\fenix_a320_*.rar"):
-                        print(fenix_nav_final_output)
-                    
-                    rarfile.RarFile(fenix_nav_final_output).extractall("fenix_nav_output_ph2")
-                    
-                    shutil.rmtree(fenix_nav_output_ph1)
-                    
-                    print("Decompression complete")
-                    
-                    print("Installing Navdata...")
-                    if os.path.isfile(fenix_nav_install_path + r"\cycle.json"):
-                        os.remove(fenix_nav_install_path + r"\cycle.json")
-                        print('Existing "cycle.json" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle.json", fenix_nav_install_path)
-                    print('Copied "cycle.json"')
-                    if os.path.isfile(fenix_nav_install_path + r"\cycle_info.txt"):
-                        os.remove(fenix_nav_install_path + r"\cycle_info.txt")
-                        print('Existing "cycle_info.txt" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle_info.txt", fenix_nav_install_path)
-                    print('Copied "cycle_info.txt"')
-                    if os.path.isfile(fenix_nav_install_path + r"\nd.db3"):
-                        os.remove(fenix_nav_install_path + r"\nd.db3")
-                        print('Existing "nd.db3" deleted.')
-                    shutil.move(fenix_nav_output_ph2 + r"\Navdata\nd.db3", fenix_nav_install_path)
-                    print('Copied "nd.db3"')
-                    shutil.rmtree(fenix_nav_output_ph2)
-                    print("Install complete.")
+                        print("Install complete.")
+                    else:
+                        os.mkdir(fenix_nav_install_path)
+                        
+                        fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
+                        fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
+                        
+                        print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                        if os.path.exists(fenix_nav_output_ph1):
+                            shutil.rmtree(fenix_nav_output_ph1)
+                        if os.path.exists(fenix_nav_output_ph2):
+                            shutil.rmtree(fenix_nav_output_ph2)
+                        
+                        rarfile.UNRAR_TOOL = r".\UnRAR.exe"
+                        
+                        rarfile.RarFile(fenix_nav_rar).extractall("fenix_nav_output_ph1")
+                        
+                        for fenix_nav_final_output in glob.glob(r".\fenix_nav_output_ph1\Navigraph AIRAC *\fenix_a320_*.rar"):
+                            print(fenix_nav_final_output)
+                        
+                        rarfile.RarFile(fenix_nav_final_output).extractall("fenix_nav_output_ph2")
+                        
+                        shutil.rmtree(fenix_nav_output_ph1)
+                        
+                        print("Decompression complete")
+                        
+                        print("Installing Navdata...")
+                        
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle.json", fenix_nav_install_path)
+                        print('Copied "cycle.json"')
+                        
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\cycle_info.txt", fenix_nav_install_path)
+                        print('Copied "cycle_info.txt"')
+                        
+                        shutil.move(fenix_nav_output_ph2 + r"\Navdata\nd.db3", fenix_nav_install_path)
+                        print('Copied "nd.db3"')
+                        
+                        shutil.rmtree(fenix_nav_output_ph2)
+                        print("Install complete.")
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror("Is Fenix A320 installed?", 'Could not find the folder "C:\\ProgramData\\Fenix\\Navdata". It seems Fenix A320 is not installed in this computer.')
