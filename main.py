@@ -502,6 +502,7 @@ def fenix_install():
                     msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
                 
                 if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX320\aircraft.cfg"):
+                    print("Fenix A320 aircraft installed.")
                     if os.path.exists(fenix_nav_install_path):
                         fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
                         fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
@@ -582,6 +583,7 @@ def fenix_install():
                         shutil.rmtree(fenix_nav_output_ph2)
                         print("Install complete.")
                 else:
+                    print("Fenix A320 not installed.")
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror("Is Fenix A320 installed?", 'Could not find the folder "C:\\ProgramData\\Fenix\\Navdata". It seems Fenix A320 is not installed in this computer.')
                     sys.exit()
