@@ -1,3 +1,4 @@
+import datetime
 import glob
 import linecache
 import os
@@ -6,7 +7,6 @@ import sys
 import tkinter
 import tkinter.messagebox
 from tkinter import filedialog
-import datetime
 
 import rarfile
 
