@@ -498,19 +498,19 @@ msfs_native_nav_version_fixed_label.grid(
     column=0, row=5, sticky=tkinter.E
 )
 msfs_native_nav_version.grid(
-    column=1, row=5, sticky=tkinter.W
+    column=1, columnspan=2, row=5, sticky=tkinter.W
 )
 pmdg_nav_version_fixed_label.grid(
     column=0, row=6, sticky=tkinter.E
 )
 pmdg_nav_version.grid(
-    column=1, row=6, sticky=tkinter.W
+    column=1, columnspan=2, row=6, sticky=tkinter.W
 )
 fenix_nav_verison_fixed_label.grid(
     column=0, row=7, sticky=tkinter.E
 )
 fenix_nav_verison.grid(
-    column=1, row=7, sticky=tkinter.W
+    column=1, columnspan=2, row=7, sticky=tkinter.W
 )
 get_msfs_opt_file()
 install_button.grid(
