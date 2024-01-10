@@ -171,9 +171,7 @@ def check_nav_version(MSFSpath):
             fenix_airac_valid_end_day = fenix_airac_valid_date[14:16]
 
             fenix_current_airac_start_time = datetime.date(year=int(fenix_airac_valid_start_year), month=int(fenix_airac_valid_start_month), day=int(fenix_airac_valid_start_day))
-            print(fenix_current_airac_start_time)
             fenix_current_airac_end_time = datetime.date(year=int(fenix_airac_valid_end_year), month=int(fenix_airac_valid_end_month), day=int(fenix_airac_valid_end_day))
-            print(fenix_current_airac_end_time)
 
             current_date = datetime.date.today()
             if current_date >= fenix_current_airac_start_time:
@@ -706,7 +704,7 @@ info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="
 version_label = tkinter.Label(root, text="v2.0.0", anchor=tkinter.SE)
 #UI配置↓
 instruction_label.grid(
-    column=0, columnspan=2, row=0
+    column=1, columnspan=2, row=0
 )
 msfs_native_checkbutton.grid(
     column=0, row=1, sticky=tkinter.E
