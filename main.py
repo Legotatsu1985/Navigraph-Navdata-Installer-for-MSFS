@@ -68,6 +68,7 @@ def check_nav_version(MSFSpath):
         current_airac_end_day = raw_airac_end_date[6:]
         current_airac_end_time = datetime.date(year=int(current_airac_end_year), month=int(current_airac_end_month), day=int(current_airac_end_day))
         
+        #Check airac validation
         current_date = datetime.date.today()
         if current_date >= current_airac_start_time:
             if current_date <= current_airac_end_time:
@@ -108,12 +109,95 @@ def check_nav_version(MSFSpath):
 def check_nav_version_pmdg(msfs_community, varient):
     pmdg_path = msfs_community + varient
     if os.path.exists(pmdg_path):
-        pmdg_navdata_version_F = linecache.getline(pmdg_path + r"\Config\NavData\Cycle.json", 1).rstrip('\n')
-        pmdg_navdata_version_H1 = pmdg_navdata_version_F.replace('{"cycle":', '')
-        pmdg_navdata_version_H2 = pmdg_navdata_version_H1.replace(',"revision":"1","name":"PMDG (all compatible products)"}', '')
-        pmdg_navdata_version = pmdg_navdata_version_H2.strip('"')
-        print("PMDG navdata version = AIRAC Cycle " + pmdg_navdata_version)
-        pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_navdata_version, fg="green")
+        file_path = pmdg_path + r"\Config\NavData\cycle_info.txt"
+        
+        with open(file_path) as f:
+            lines = f.read().splitlines()
+
+        get_line_pmdg_airac_cycle = lines[0]
+        get_line_pmdg_airac_rev = lines[1]
+        get_line_pmdg_airac_valid_date = lines[2]
+
+        pmdg_airac_cycle_number = get_line_pmdg_airac_cycle[17:21] #AIRAC Cycle Number
+        pmdg_airac_rev_number = get_line_pmdg_airac_rev[17:18] #AIRAC Cycle Revision Number
+        pmdg_airac_valid_date = get_line_pmdg_airac_valid_date[17:42] #AIRAC Cycle Valid date
+
+        pmdg_airac_valid_start_year = pmdg_airac_valid_date[7:11]
+
+        pmdg_airac_valid_start_month_raw = pmdg_airac_valid_date[3:6]
+        if pmdg_airac_valid_start_month_raw == "JAN":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("JAN", "01")
+        elif pmdg_airac_valid_start_month_raw == "FEB":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("FEB", "02")
+        elif pmdg_airac_valid_start_month_raw == "MAR":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("MAR", "03")
+        elif pmdg_airac_valid_start_month_raw == "APR":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("APR", "04")
+        elif pmdg_airac_valid_start_month_raw == "MAY":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("MAY", "05")
+        elif pmdg_airac_valid_start_month_raw == "JUN":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("JUN", "06")
+        elif pmdg_airac_valid_start_month_raw == "JUL":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("JUL", "07")
+        elif pmdg_airac_valid_start_month_raw == "AUG":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("AUG", "08")
+        elif pmdg_airac_valid_start_month_raw == "SEP":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("SEP", "09")
+        elif pmdg_airac_valid_start_month_raw == "OCT":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("OCT", "10")
+        elif pmdg_airac_valid_start_month_raw == "NOV":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("NOV", "11")
+        elif pmdg_airac_valid_start_month_raw == "DEC":
+            pmdg_airac_valid_start_month = pmdg_airac_valid_start_month_raw.replace("DEC", "12")
+
+        pmdg_airac_valid_start_day = pmdg_airac_valid_date[:2]
+
+        pmdg_airac_valid_end_year = pmdg_airac_valid_date[21:]
+
+        pmdg_airac_valid_end_month_raw = pmdg_airac_valid_date[17:20]
+        if pmdg_airac_valid_end_month_raw == "JAN":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("JAN", "01")
+        elif pmdg_airac_valid_end_month_raw == "FEB":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("FEB", "02")
+        elif pmdg_airac_valid_end_month_raw == "MAR":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("MAR", "03")
+        elif pmdg_airac_valid_end_month_raw == "APR":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("APR", "04")
+        elif pmdg_airac_valid_end_month_raw == "MAY":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("MAY", "05")
+        elif pmdg_airac_valid_end_month_raw == "JUN":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("JUN", "06")
+        elif pmdg_airac_valid_end_month_raw == "JUL":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("JUL", "07")
+        elif pmdg_airac_valid_end_month_raw == "AUG":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("AUG", "08")
+        elif pmdg_airac_valid_end_month_raw == "SEP":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("SEP", "09")
+        elif pmdg_airac_valid_end_month_raw == "OCT":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("OCT", "10")
+        elif pmdg_airac_valid_end_month_raw == "NOV":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("NOV", "11")
+        elif pmdg_airac_valid_end_month_raw == "DEC":
+            pmdg_airac_valid_end_month = pmdg_airac_valid_end_month_raw.replace("DEC", "12")
+
+        pmdg_airac_valid_end_day = pmdg_airac_valid_date[14:16]
+
+        pmdg_current_airac_start_time = datetime.date(year=int(pmdg_airac_valid_start_year), month=int(pmdg_airac_valid_start_month), day=int(pmdg_airac_valid_start_day))
+        print(pmdg_current_airac_start_time)
+        pmdg_current_airac_end_time = datetime.date(year=int(pmdg_airac_valid_end_year), month=int(pmdg_airac_valid_end_month), day=int(pmdg_airac_valid_end_day))
+        print(pmdg_current_airac_end_time)
+
+        current_date = datetime.date.today()
+        if current_date >= pmdg_current_airac_start_time:
+            if current_date <= pmdg_current_airac_end_time:
+                print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
+                pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number, fg="green")
+            else:
+                print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+                pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number + " (Outdated)", fg="red")
+        else:
+            print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+            pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number + " (Outdated)", fg="red")
     else:
         pmdg_nav_version.config(text="Navdata not detected", fg="red")
 
