@@ -191,13 +191,13 @@ def check_nav_version_pmdg(msfs_community, varient):
         if current_date >= pmdg_current_airac_start_time:
             if current_date <= pmdg_current_airac_end_time:
                 print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
-                pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number, fg="green")
+                pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number, fg="green")
             else:
                 print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
-                pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number + " (Outdated)", fg="red")
+                pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " (Outdated)", fg="red")
         else:
             print("PMDG navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
-            pmdg_nav_version.config(text="AIRAC Cycle" + pmdg_airac_cycle_number + " (Outdated)", fg="red")
+            pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " (Outdated)", fg="red")
     else:
         pmdg_nav_version.config(text="Navdata not detected", fg="red")
 
