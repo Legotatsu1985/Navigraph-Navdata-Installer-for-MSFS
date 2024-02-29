@@ -96,7 +96,7 @@ def check_nav_version(MSFSpath):
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
-    if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX320\aircraft.cfg"):
+    if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX_320_CFM\aircraft.cfg"):
         if os.path.exists(fenix_nav_install_path):
             with open(fenix_nav_install_path + r"\cycle_info.txt") as f:
                 lines = f.read().splitlines()
