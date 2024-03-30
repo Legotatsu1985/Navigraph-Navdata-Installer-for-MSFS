@@ -2,13 +2,13 @@
  [![Github All Releases](https://img.shields.io/github/downloads/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/total
 )](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/releases)
  
- Navigraph Navdata Installer (or Decompresser) is automated file copying tool who does not have the Navigraph subscription.
+ Navigraph Navdata Installer (Decompresser) is automated file copying tool who does not have the Navigraph subscription.
  Currently in development. We will provide a proper release later.
- If you have any issues and request of our application, create a Issue [here](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/issues) or contact via my Discord "legotatsu".
+ If you have any issues and your feature requests, create a Issue [here](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/issues) or contact via my Discord "legotatsu".
 
 # Just you should know if you use our installer
  This installer is not officially confirmed by Navigraph and [SimPlaza](https://simplaza.org/). So we are NOT responsible for your content losses and their licences.
- Also [SimPlaza](https://simplaza.org/) is a illegal website of providing almost MSFS2020 contents like payware aircrafts, payware sceneries, payware tools and so on for completely free. Use of the website is at your own risk.
+ Also [SimPlaza](https://simplaza.org/) is a illegal website of providing almost MSFS2020 contents like payware aircrafts, sceneries, tools and so on for completely free. Use of the website is at your own risk.
 
 # Installable navdata contents
  - MSFS Native navdata
