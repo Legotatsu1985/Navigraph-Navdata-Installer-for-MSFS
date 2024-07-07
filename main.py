@@ -39,16 +39,16 @@ def get_msfs_installed_path(msfs_opt_file):
 def check_nav_version(MSFSpath):
     msfs_community = MSFSpath + r"\Community"
     #MSFS Native Navdata Version Check
-    if os.path.exists(msfs_community + r"\navigraph-navdata-base"):
-        cycle_file_path = msfs_community + r"\navigraph-navdata-base\ContentInfo\navigraph-navdata\cycle.json"
+    if os.path.exists(msfs_community + r"\navigraph-navdata-base"): #If navdata folder exists
+        cycle_file_path = msfs_community + r"\navigraph-navdata-base\ContentInfo\navigraph-navdata\cycle.json" #Get the cycle.json file
         with open(cycle_file_path) as f:
             lines = f.read().split(',')
         
         #Get current AIRAC Version of MSFS Native navdata
         get_msfs_current_airac_fromlist = lines[3]
-        msfs_current_airac_number = get_msfs_current_airac_fromlist[9:13]
+        msfs_current_airac_number = get_msfs_current_airac_fromlist[9:13] #AIRAC number
         get_msfs_current_airac_rev_fromlist = lines[4]
-        msfs_current_airac_rev_number = get_msfs_current_airac_rev_fromlist[11:12]
+        msfs_current_airac_rev_number = get_msfs_current_airac_rev_fromlist[11:12] # Revision number
         msfs_native_nav_version_raw_txt = "AIRAC Cycle " + msfs_current_airac_number + " rev." + msfs_current_airac_rev_number
         
         #Get current AIRAC Start date
@@ -67,7 +67,7 @@ def check_nav_version(MSFSpath):
         current_airac_end_day = raw_airac_end_date[6:]
         current_airac_end_time = datetime.date(year=int(current_airac_end_year), month=int(current_airac_end_month), day=int(current_airac_end_day))
         
-        #Check airac validation
+        #Check AIRAC validation
         current_date = datetime.date.today()
         if current_date >= current_airac_start_time:
             if current_date <= current_airac_end_time:
@@ -79,7 +79,7 @@ def check_nav_version(MSFSpath):
         else:
             print("MSFS Native navdata version = " + msfs_native_nav_version_raw_txt + " (Invalid)")
             msfs_native_nav_version.config(text=msfs_native_nav_version_raw_txt + " (Outdated)", fg="red")
-    else:
+    else: #If the folder doesn't exist
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
     #PMDG 737 Navdata Version Check (All varient)
