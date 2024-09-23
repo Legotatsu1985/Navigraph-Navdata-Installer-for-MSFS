@@ -756,23 +756,29 @@ pmdg_737_nav_version_fixed_label.grid(
 pmdg_737_nav_version.grid(
     column=1, columnspan=2, row=7, sticky=tkinter.W
 )
-fenix_nav_version_fixed_label.grid(
+pmdg_777_nav_version_fixed_label.grid(
     column=0, row=8, sticky=tkinter.E
 )
-fenix_nav_version.grid(
+pmdg_777_nav_version.grid(
     column=1, columnspan=2, row=8, sticky=tkinter.W
+)
+fenix_nav_version_fixed_label.grid(
+    column=0, row=9, sticky=tkinter.E
+)
+fenix_nav_version.grid(
+    column=1, columnspan=2, row=9, sticky=tkinter.W
 )
 get_msfs_opt_file()
 install_button.grid(
-    column=0, row=9, sticky=tkinter.E
+    column=0, row=10, sticky=tkinter.E
 )
 exit_button.grid(
-    column=1, row=9, sticky=tkinter.W
+    column=1, row=10, sticky=tkinter.W
 )
 info_label.grid(
-    column=0, columnspan=2, row=10
+    column=0, columnspan=2, row=11
 )
 version_label.grid(
-    column=0, columnspan=2, row=11
+    column=0, columnspan=2, row=12
 )
 root.mainloop()
