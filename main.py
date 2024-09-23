@@ -82,17 +82,23 @@ def check_nav_version(MSFSpath):
     else: #If the folder doesn't exist
         msfs_native_nav_version.config(text="Navdata not detected", fg="red")
     
-    #PMDG 737 Navdata Version Check (All varient)
+    #PMDG 737 Navdata Version Check (All type)
     if os.path.exists(msfs_community + r"\pmdg-aircraft-739"):
-        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-739")
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-739", 737)
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-738"):
-        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-738")
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-738", 737)
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-737"):
-        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-737")
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-737", 737)
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
-        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736", 737)
     else:
         pmdg_737_nav_version.config(text="Navdata not detected", fg="red")
+    
+    #PMDG 777 Navdata Version Check (All type)
+    if os.path.exists(msfs_community + r"\pmdg-aircraft-77w"):
+        check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-77w", 777)
+    else:
+        pmdg_777_nav_version.config(text="Navdata not detected", fg="red")
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
@@ -188,8 +194,8 @@ def check_nav_version(MSFSpath):
     else:
         fenix_nav_version.config(text="Navdata not detected", fg="red")
 
-def check_nav_version_pmdg(msfs_community, varient):
-    pmdg_path = msfs_community + varient
+def check_nav_version_pmdg(msfs_community, type, variety):
+    pmdg_path = msfs_community + type
     if os.path.exists(pmdg_path):
         file_path = pmdg_path + r"\Config\NavData\cycle_info.txt"
         
@@ -268,18 +274,34 @@ def check_nav_version_pmdg(msfs_community, varient):
         pmdg_current_airac_end_time = datetime.date(year=int(pmdg_airac_valid_end_year), month=int(pmdg_airac_valid_end_month), day=int(pmdg_airac_valid_end_day))
 
         current_date = datetime.date.today()
-        if current_date >= pmdg_current_airac_start_time:
-            if current_date <= pmdg_current_airac_end_time:
-                print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
-                pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number,  fg="green")
+        
+        if variety==737:
+            if current_date >= pmdg_current_airac_start_time:
+                if current_date <= pmdg_current_airac_end_time:
+                    print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
+                    pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number, fg="green")
+                else:
+                    print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+                    pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
             else:
                 print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
                 pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
-        else:
-            print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
-            pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
+        elif variety==777:
+            if current_date >= pmdg_current_airac_start_time:
+                if current_date <= pmdg_current_airac_end_time:
+                    print("PMDG 777 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
+                    pmdg_777_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number, fg="green")
+                else:
+                    print("PMDG 777 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+                    pmdg_777_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
+            else:
+                print("PMDG 777 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
+                pmdg_777_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
     else:
-        pmdg_737_nav_version.config(text="Navdata not detected", fg="red")
+        if variety==737:
+            pmdg_737_nav_version.config(text="Navdata not detected", fg="red")
+        elif variety==777:
+            pmdg_777_nav_version.config(text="Navdata not detected", fg="red")
 
 def on_nav_install_select_button_click():
     checked = [msfs_native_checkbox.get(), pmdg_737_checkbox.get(), fenix_checkbox.get()]
