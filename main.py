@@ -358,12 +358,6 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    msfs_native_checkbutton["state"] = "normal"
-                    pmdg_737_checkbutton["state"] = "normal"
-                    pmdg_777_checkbutton["state"] = "normal"
-                    fenix_checkbutton["state"] = "normal"
-                    install_button["state"] = "normal"
-                    exit_button["state"] = "normal"
                     return
             else:
                 tkinter.Tk().withdraw()
@@ -380,12 +374,6 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    msfs_native_checkbutton["state"] = "normal"
-                    pmdg_737_checkbutton["state"] = "normal"
-                    pmdg_777_checkbutton["state"] = "normal"
-                    fenix_checkbutton["state"] = "normal"
-                    install_button["state"] = "normal"
-                    exit_button["state"] = "normal"
                     return
         
         tkinter.Tk().withdraw()
@@ -820,6 +808,14 @@ install_button = tkinter.Button(root, text="Install", width=15, command=on_nav_i
 exit_button = tkinter.Button(root, text="Exit", width=15, command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
 version_label = tkinter.Label(root, text=software_version, anchor=tkinter.SE)
+
+msfs_native_checkbutton["state"] = "normal"
+pmdg_737_checkbutton["state"] = "normal"
+pmdg_777_checkbutton["state"] = "normal"
+fenix_checkbutton["state"] = "normal"
+install_button["state"] = "normal"
+exit_button["state"] = "normal"
+
 #UI配置↓
 instruction_label.grid(
     column=0, columnspan=2, row=0
