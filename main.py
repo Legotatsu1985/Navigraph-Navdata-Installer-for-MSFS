@@ -306,7 +306,7 @@ def install_confirmation(install_contents):
     tkinter.Tk().withdraw()
     if tkinter.messagebox.askokcancel("Continue?", install_contents) == True:
         msfs_native_checkbutton["state"] = "disable"
-        pmdg_checkbutton["state"] = "disable"
+        pmdg_737_checkbutton["state"] = "disable"
         fenix_checkbutton["state"] = "disable"
         install_button["state"] = "disable"
         exit_button["state"] = "disable"
@@ -681,22 +681,34 @@ root = tkinter.Tk()
 root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("350x250")
 instruction_label = tkinter.Label(root, justify="center", text='[Select the checkbox you want to install, then press "Install".]')
+
 msfs_native_checkbox = tkinter.IntVar()
 pmdg_737_checkbox = tkinter.IntVar()
+pmdg_777_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
+
 msfs_native_checkbutton = tkinter.Checkbutton(root, variable=msfs_native_checkbox)
-pmdg_checkbutton = tkinter.Checkbutton(root, variable=pmdg_737_checkbox)
+pmdg_737_checkbutton = tkinter.Checkbutton(root, variable=pmdg_737_checkbox)
+pmdg_777_checkbutton = tkinter.Checkbutton(root, variable=pmdg_777_checkbox)
 fenix_checkbutton = tkinter.Checkbutton(root, variable=fenix_checkbox)
+
 msfs_native_checkbutton_label = tkinter.Label(root, justify="left", text="MSFS Native Navdata")
-pmdg_checkbutton_label = tkinter.Label(root, justify="left", text="PMDG 737 Navdata")
+pmdg_737_checkbutton_label = tkinter.Label(root, justify="left", text="PMDG 737 Navdata")
+pmdg_777_checkbutton_label = tkinter.Label(root, justify="left", text="PMDG 777 Navdata")
 fenix_checkbutton_label = tkinter.Label(root, justify="left", text="Fenix A320 Navdata")
+
 all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
+
 msfs_native_nav_version_fixed_label = tkinter.Label(root, justify="left", text="MSFS Native:")
 pmdg_737_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
+pmdg_777_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 777:")
 fenix_nav_version_fixed_label = tkinter.Label(root, justify="left", text="Fenix A320:")
+
 msfs_native_nav_version = tkinter.Label(root, justify="left")
 pmdg_737_nav_version = tkinter.Label(root, justify="left")
+pmdg_777_nav_version = tkinter.Label(root, justify="left")
 fenix_nav_version = tkinter.Label(root, justify="left")
+
 install_button = tkinter.Button(root, text="Install", width=15, command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", width=15, command=sys.exit)
 info_label = tkinter.Label(root, text="Made by Legotatsu1985 with Tkinter", fg="blue", anchor=tkinter.S)
@@ -711,50 +723,56 @@ msfs_native_checkbutton.grid(
 msfs_native_checkbutton_label.grid(
     column=1, row=1, sticky=tkinter.W
 )
-pmdg_checkbutton.grid(
+pmdg_737_checkbutton.grid(
     column=0, row=2, sticky=tkinter.E
 )
-pmdg_checkbutton_label.grid(
+pmdg_737_checkbutton_label.grid(
     column=1, row=2, sticky=tkinter.W
 )
-fenix_checkbutton.grid(
+pmdg_777_checkbutton.grid(
     column=0, row=3, sticky=tkinter.E
 )
-fenix_checkbutton_label.grid(
+pmdg_777_checkbutton_label.grid(
     column=1, row=3, sticky=tkinter.W
 )
+fenix_checkbutton.grid(
+    column=0, row=4, sticky=tkinter.E
+)
+fenix_checkbutton_label.grid(
+    column=1, row=4, sticky=tkinter.W
+)
 all_navdata_installed_version_info_label.grid(
-    column=0, columnspan=2, row=4
+    column=0, columnspan=2, row=5
 )
 msfs_native_nav_version_fixed_label.grid(
-    column=0, row=5, sticky=tkinter.E
-)
-msfs_native_nav_version.grid(
-    column=1, columnspan=2, row=5, sticky=tkinter.W
-)
-pmdg_737_nav_version_fixed_label.grid(
     column=0, row=6, sticky=tkinter.E
 )
-pmdg_737_nav_version.grid(
+msfs_native_nav_version.grid(
     column=1, columnspan=2, row=6, sticky=tkinter.W
 )
-fenix_nav_version_fixed_label.grid(
+pmdg_737_nav_version_fixed_label.grid(
     column=0, row=7, sticky=tkinter.E
 )
-fenix_nav_version.grid(
+pmdg_737_nav_version.grid(
     column=1, columnspan=2, row=7, sticky=tkinter.W
+)
+fenix_nav_version_fixed_label.grid(
+    column=0, row=8, sticky=tkinter.E
+)
+fenix_nav_version.grid(
+    column=1, columnspan=2, row=8, sticky=tkinter.W
 )
 get_msfs_opt_file()
 install_button.grid(
-    column=0, row=8, sticky=tkinter.E
+    column=0, row=9, sticky=tkinter.E
 )
 exit_button.grid(
-    column=1, row=8, sticky=tkinter.W
+    column=1, row=9, sticky=tkinter.W
 )
 info_label.grid(
-    column=0, columnspan=2, row=9
+    column=0, columnspan=2, row=10
 )
 version_label.grid(
-    column=0, columnspan=2, row=10
+    column=0, columnspan=2, row=11
 )
 root.mainloop()
