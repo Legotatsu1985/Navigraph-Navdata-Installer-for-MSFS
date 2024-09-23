@@ -392,7 +392,7 @@ def install_confirmation(confirm_message):
         tkinter.messagebox.showinfo("Complete", "All installation complete.")
         sys.exit()
     else:
-        return 0
+        return
 
 def msfs_native_install(msfs_native_nav_rar):
     msfs_native_nav_output = r".\msfs_native_nav_output" #変数定義（ナビデータ一時展開先フォルダー）
