@@ -613,7 +613,7 @@ def pmdg_777_install():
             msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
         
         tkinter.Tk().withdraw()
-        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 777','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog.','File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
+        if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 777','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
             pmdg_777_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
             pmdg_777_nav_rar_basename = os.path.basename(pmdg_777_nav_rar)
             if'navigraph-navdata-installers-airac-cycle-' in pmdg_777_nav_rar_basename:
