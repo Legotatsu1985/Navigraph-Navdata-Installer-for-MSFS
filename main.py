@@ -358,12 +358,12 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    msfs_native_checkbutton["state"] = "enable"
-                    pmdg_737_checkbutton["state"] = "enable"
-                    pmdg_777_checkbutton["state"] = "enable"
-                    fenix_checkbutton["state"] = "enable"
-                    install_button["state"] = "enable"
-                    exit_button["state"] = "enable"
+                    msfs_native_checkbutton["state"] = "active"
+                    pmdg_737_checkbutton["state"] = "active"
+                    pmdg_777_checkbutton["state"] = "active"
+                    fenix_checkbutton["state"] = "active"
+                    install_button["state"] = "active"
+                    exit_button["state"] = "active"
                     return
             else:
                 tkinter.Tk().withdraw()
@@ -380,12 +380,12 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    msfs_native_checkbutton["state"] = "enable"
-                    pmdg_737_checkbutton["state"] = "enable"
-                    pmdg_777_checkbutton["state"] = "enable"
-                    fenix_checkbutton["state"] = "enable"
-                    install_button["state"] = "enable"
-                    exit_button["state"] = "enable"
+                    msfs_native_checkbutton["state"] = "active"
+                    pmdg_737_checkbutton["state"] = "active"
+                    pmdg_777_checkbutton["state"] = "active"
+                    fenix_checkbutton["state"] = "active"
+                    install_button["state"] = "active"
+                    exit_button["state"] = "active"
                     return
         
         tkinter.Tk().withdraw()
