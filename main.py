@@ -92,7 +92,7 @@ def check_nav_version(MSFSpath):
     elif os.path.exists(msfs_community + r"\pmdg-aircraft-736"):
         check_nav_version_pmdg(msfs_community, r"\pmdg-aircraft-736")
     else:
-        pmdg_nav_version.config(text="Navdata not detected", fg="red")
+        pmdg_737_nav_version.config(text="Navdata not detected", fg="red")
     
     #Fenix A320 Navdata Version Check
     fenix_nav_install_path = r"C:\ProgramData\Fenix\Navdata"
@@ -271,18 +271,18 @@ def check_nav_version_pmdg(msfs_community, varient):
         if current_date >= pmdg_current_airac_start_time:
             if current_date <= pmdg_current_airac_end_time:
                 print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Valid)")
-                pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number,  fg="green")
+                pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number,  fg="green")
             else:
                 print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
-                pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
+                pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
         else:
             print("PMDG 737 navdata version = AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Invalid)")
-            pmdg_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
+            pmdg_737_nav_version.config(text="AIRAC Cycle " + pmdg_airac_cycle_number + " rev." + pmdg_airac_rev_number + " (Outdated)", fg="red")
     else:
-        pmdg_nav_version.config(text="Navdata not detected", fg="red")
+        pmdg_737_nav_version.config(text="Navdata not detected", fg="red")
 
 def on_nav_install_select_button_click():
-    checked = [msfs_native_checkbox.get(), pmdg_checkbox.get(), fenix_checkbox.get()]
+    checked = [msfs_native_checkbox.get(), pmdg_737_checkbox.get(), fenix_checkbox.get()]
     if checked == [1, 0, 0]:
         install_confirmation("MSFS Native navdata will be installed only. Do you continue?")
     elif checked == [0, 1, 0]:
@@ -311,7 +311,7 @@ def install_confirmation(install_contents):
         install_button["state"] = "disable"
         exit_button["state"] = "disable"
         msfs_native_install()
-        pmdg_install()
+        pmdg_737_install()
         fenix_install()
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo("Complete", "All installation complete.")
@@ -410,8 +410,8 @@ def msfs_native_install():
     else:
         return
 
-def pmdg_install():
-    if pmdg_checkbox.get() == 1:
+def pmdg_737_install():
+    if pmdg_737_checkbox.get() == 1:
         #「UserCfg.opt」を検索、MSFSインストールパスを入手し、Communityフォルダーを定義
         if glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
             for msfs_opt_file in glob.glob(r'C:\Users\*\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\UserCfg.opt'):
@@ -442,14 +442,14 @@ def pmdg_install():
         
         tkinter.Tk().withdraw()
         if tkinter.messagebox.askokcancel('Navigraph Navdata Installer for PMDG 737NG','To use this installer, you need to download the latest AIRAC Navdata from SimPlaza. Select the archive file you downloaded in next dialog. File example: "navigraph-navdata-installer-airac-cycle-2310.rar"') == True:
-            pmdg_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
-            pmdg_nav_rar_basename = os.path.basename(pmdg_nav_rar)
-            if'navigraph-navdata-installers-airac-cycle-' in pmdg_nav_rar_basename:
+            pmdg_737_nav_rar = filedialog.askopenfilename(filetypes=[('RAR Archive file','*.rar')], initialdir=os.path.abspath('.'), title="Select the latest Navigraph AIRAC archive file.(Navdata Installers)")
+            pmdg_737_nav_rar_basename = os.path.basename(pmdg_737_nav_rar)
+            if'navigraph-navdata-installers-airac-cycle-' in pmdg_737_nav_rar_basename:
                 
-                pmdg_nav_output_ph1 = r".\pmdg_nav_output_ph1" #解凍段階1
-                pmdg_nav_output_ph2 = r".\pmdg_nav_output_ph2" #解凍段階2(最終完了)
-                pmdg_nav_NavData = pmdg_nav_output_ph2 + r"\NavData" #解凍先NavDataのフルパス
-                pmdg_nav_SidStars = pmdg_nav_output_ph2 + r"\SidStars" #解凍先SidStarsのフルパス
+                pmdg_737_nav_output_ph1 = r".\pmdg_737_nav_output_ph1" #解凍段階1
+                pmdg_737_nav_output_ph2 = r".\pmdg_737_nav_output_ph2" #解凍段階2(最終完了)
+                pmdg_737_nav_NavData = pmdg_737_nav_output_ph2 + r"\NavData" #解凍先NavDataのフルパス
+                pmdg_737_nav_SidStars = pmdg_737_nav_output_ph2 + r"\SidStars" #解凍先SidStarsのフルパス
                 pmdg_config_route_736 = msfs_community + r"\pmdg-aircraft-736\Config"
                 pmdg_config_route_737 = msfs_community + r"\pmdg-aircraft-737\Config"
                 pmdg_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
@@ -457,24 +457,24 @@ def pmdg_install():
                 
                 print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
             
-                if os.path.exists(pmdg_nav_output_ph1):
-                    shutil.rmtree(pmdg_nav_output_ph1)
+                if os.path.exists(pmdg_737_nav_output_ph1):
+                    shutil.rmtree(pmdg_737_nav_output_ph1)
 
-                if os.path.exists(pmdg_nav_output_ph2):
-                    shutil.rmtree(pmdg_nav_output_ph2)
+                if os.path.exists(pmdg_737_nav_output_ph2):
+                    shutil.rmtree(pmdg_737_nav_output_ph2)
                 
                 rarfile.UNRAR_TOOL=r".\UnRAR.exe"
 
-                rf2 = rarfile.RarFile(pmdg_nav_rar)
-                rf2.extractall("pmdg_nav_output_ph1")
+                rf2 = rarfile.RarFile(pmdg_737_nav_rar)
+                rf2.extractall("pmdg_737_nav_output_ph1")
 
-                for pmdg_nav_final_output in glob.glob(r".\pmdg_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
-                    print(pmdg_nav_final_output)
+                for pmdg_737_nav_final_output in glob.glob(r".\pmdg_737_nav_output_ph1\Navigraph AIRAC *\pmdg_737_msfs_*.rar"):
+                    print(pmdg_737_nav_final_output)
 
-                rf3 = rarfile.RarFile(pmdg_nav_final_output)
-                rf3.extractall("pmdg_nav_output_ph2")
+                rf3 = rarfile.RarFile(pmdg_737_nav_final_output)
+                rf3.extractall("pmdg_737_nav_output_ph2")
 
-                shutil.rmtree(pmdg_nav_output_ph1)
+                shutil.rmtree(pmdg_737_nav_output_ph1)
             
                 print("Decompression complete.")
             
@@ -488,8 +488,8 @@ def pmdg_install():
                     elif os.path.exists(pmdg_config_route_736 + r"\SIDSTARS"):
                         shutil.rmtree(pmdg_config_route_736 + r"\SIDSTARS")
                 
-                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_736 + r"\NavData")
-                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_736 + r"\SidStars")
+                    shutil.copytree(pmdg_737_nav_NavData, pmdg_config_route_736 + r"\NavData")
+                    shutil.copytree(pmdg_737_nav_SidStars, pmdg_config_route_736 + r"\SidStars")
                 else:
                     print("PMDG B736 Not found in your community folder. We will skip this nav update.")
             
@@ -502,8 +502,8 @@ def pmdg_install():
                     elif os.path.exists(pmdg_config_route_737 + r"\SIDSTARS"):
                         shutil.rmtree(pmdg_config_route_737 + r"\SIDSTARS")
                 
-                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_737 + r"\NavData")
-                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_737 + r"\SidStars")
+                    shutil.copytree(pmdg_737_nav_NavData, pmdg_config_route_737 + r"\NavData")
+                    shutil.copytree(pmdg_737_nav_SidStars, pmdg_config_route_737 + r"\SidStars")
                 else:
                     print("PMDG B737 Not found in your community folder. We will skip this nav update.")
             
@@ -516,8 +516,8 @@ def pmdg_install():
                     elif os.path.exists(pmdg_config_route_738 + r"\SIDSTARS"):
                         shutil.rmtree(pmdg_config_route_738 + r"\SIDSTARS")
                 
-                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_738 + r"\NavData")
-                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_738 + r"\SidStars")
+                    shutil.copytree(pmdg_737_nav_NavData, pmdg_config_route_738 + r"\NavData")
+                    shutil.copytree(pmdg_737_nav_SidStars, pmdg_config_route_738 + r"\SidStars")
                 else:
                     print("PMDG B738 Not found in your community folder. We will skip this nav update.")
             
@@ -530,12 +530,12 @@ def pmdg_install():
                     elif os.path.exists(pmdg_config_route_739 + r"\SIDSTARS"):
                         shutil.rmtree(pmdg_config_route_739 + r"\SIDSTARS")
                 
-                    shutil.copytree(pmdg_nav_NavData, pmdg_config_route_739 + r"\NavData")
-                    shutil.copytree(pmdg_nav_SidStars, pmdg_config_route_739 + r"\SidStars")
+                    shutil.copytree(pmdg_737_nav_NavData, pmdg_config_route_739 + r"\NavData")
+                    shutil.copytree(pmdg_737_nav_SidStars, pmdg_config_route_739 + r"\SidStars")
                 else:
                     print("PMDG B739 Not found in your community folder. We will skip this nav update.")
                 
-                shutil.rmtree(pmdg_nav_output_ph2)
+                shutil.rmtree(pmdg_737_nav_output_ph2)
                 print("Install complete.")
             else:
                 tkinter.Tk().withdraw()
@@ -682,20 +682,20 @@ root.title("Navigraph Navdata Installer for MSFS")
 root.geometry("350x250")
 instruction_label = tkinter.Label(root, justify="center", text='[Select the checkbox you want to install, then press "Install".]')
 msfs_native_checkbox = tkinter.IntVar()
-pmdg_checkbox = tkinter.IntVar()
+pmdg_737_checkbox = tkinter.IntVar()
 fenix_checkbox = tkinter.IntVar()
 msfs_native_checkbutton = tkinter.Checkbutton(root, variable=msfs_native_checkbox)
-pmdg_checkbutton = tkinter.Checkbutton(root, variable=pmdg_checkbox)
+pmdg_checkbutton = tkinter.Checkbutton(root, variable=pmdg_737_checkbox)
 fenix_checkbutton = tkinter.Checkbutton(root, variable=fenix_checkbox)
 msfs_native_checkbutton_label = tkinter.Label(root, justify="left", text="MSFS Native Navdata")
 pmdg_checkbutton_label = tkinter.Label(root, justify="left", text="PMDG 737 Navdata")
 fenix_checkbutton_label = tkinter.Label(root, justify="left", text="Fenix A320 Navdata")
 all_navdata_installed_version_info_label = tkinter.Label(root, justify="center", text='[↓ Current navdata version installed ↓]')
 msfs_native_nav_version_fixed_label = tkinter.Label(root, justify="left", text="MSFS Native:")
-pmdg_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
+pmdg_737_nav_version_fixed_label = tkinter.Label(root, justify="left", text="PMDG 737:")
 fenix_nav_version_fixed_label = tkinter.Label(root, justify="left", text="Fenix A320:")
 msfs_native_nav_version = tkinter.Label(root, justify="left")
-pmdg_nav_version = tkinter.Label(root, justify="left")
+pmdg_737_nav_version = tkinter.Label(root, justify="left")
 fenix_nav_version = tkinter.Label(root, justify="left")
 install_button = tkinter.Button(root, text="Install", width=15, command=on_nav_install_select_button_click)
 exit_button = tkinter.Button(root, text="Exit", width=15, command=sys.exit)
@@ -732,10 +732,10 @@ msfs_native_nav_version_fixed_label.grid(
 msfs_native_nav_version.grid(
     column=1, columnspan=2, row=5, sticky=tkinter.W
 )
-pmdg_nav_version_fixed_label.grid(
+pmdg_737_nav_version_fixed_label.grid(
     column=0, row=6, sticky=tkinter.E
 )
-pmdg_nav_version.grid(
+pmdg_737_nav_version.grid(
     column=1, columnspan=2, row=6, sticky=tkinter.W
 )
 fenix_nav_version_fixed_label.grid(
