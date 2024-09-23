@@ -397,7 +397,7 @@ def msfs_native_install():
             msfs_native_nav_rar_basename = os.path.basename(msfs_native_nav_rar)
             if 'navigraph-navdata-msfs2020-airac-cycle-' in msfs_native_nav_rar_basename:
             
-                print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                print("Decompressing file. Please wait... (It may be taking a few minute. Please be patience...)")
 
                 rarfile.UNRAR_TOOL=r".\UnRAR.exe"#解凍ツール選択（同フォルダに格納済み）
 
@@ -491,7 +491,7 @@ def pmdg_737_install():
                 pmdg_737_config_route_738 = msfs_community + r"\pmdg-aircraft-738\Config"
                 pmdg_737_config_route_739 = msfs_community + r"\pmdg-aircraft-739\Config"
                 
-                print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                print("Decompressing file. Please wait... (It may be taking a few minute. Please be patience...)")
             
                 if os.path.exists(pmdg_737_nav_output_ph1):
                     shutil.rmtree(pmdg_737_nav_output_ph1)
@@ -623,7 +623,7 @@ def pmdg_777_install():
                 pmdg_777_nav_NavData = pmdg_777_nav_output_ph2 + r"\NavData"
                 pmdg_777_config_route_77w = msfs_community + r".\pmdg-aircraft-77w\Config"
                 
-                print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                print("Decompressing file. Please wait... (It may be taking a few minute. Please be patience...)")
                 
                 if os.path.exists(pmdg_777_nav_output_ph1):
                     shutil.rmtree(pmdg_777_nav_output_ph1)
@@ -705,7 +705,7 @@ def fenix_install():
                         fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
                         fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
                         
-                        print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                        print("Decompressing file. Please wait... (It may be taking a few minute. Please be patience...)")
                         if os.path.exists(fenix_nav_output_ph1):
                             shutil.rmtree(fenix_nav_output_ph1)
                         if os.path.exists(fenix_nav_output_ph2):
@@ -748,7 +748,7 @@ def fenix_install():
                         fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
                         fenix_nav_output_ph2 = r".\fenix_nav_output_ph2" #解凍段階2(最終完了)
                         
-                        print("Decompressing file. Please wait... (It may be taking a long time. Please be patience...)")
+                        print("Decompressing file. Please wait... (It may be taking a few minute. Please be patience...)")
                         if os.path.exists(fenix_nav_output_ph1):
                             shutil.rmtree(fenix_nav_output_ph1)
                         if os.path.exists(fenix_nav_output_ph2):
