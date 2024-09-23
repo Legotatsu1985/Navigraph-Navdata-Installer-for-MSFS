@@ -699,7 +699,7 @@ def fenix_install():
                     tkinter.messagebox.showerror('Navigraph Navdata Installer','Cannot find the Community folder. Please select your Community folder in next dialog.')
                     msfs_community = filedialog.askdirectory(initialdir=os.path.abspath('.'), title='Please select your Community folder.')
                 
-                if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX320\aircraft.cfg"):
+                if os.path.isfile(msfs_community + r"\fnx-aircraft-320\SimObjects\Airplanes\FNX_320_CFM\aircraft.cfg"):
                     print("Fenix A320 aircraft installed.")
                     if os.path.exists(fenix_nav_install_path):
                         fenix_nav_output_ph1 = r".\fenix_nav_output_ph1" #解凍段階1
