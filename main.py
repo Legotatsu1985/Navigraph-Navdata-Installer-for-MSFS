@@ -358,7 +358,13 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    return 1
+                    msfs_native_checkbutton["state"] = "enable"
+                    pmdg_737_checkbutton["state"] = "enable"
+                    pmdg_777_checkbutton["state"] = "enable"
+                    fenix_checkbutton["state"] = "enable"
+                    install_button["state"] = "enable"
+                    exit_button["state"] = "enable"
+                    return
             else:
                 tkinter.Tk().withdraw()
                 tkinter.messagebox.showinfo('MSFS Native navdata installation will be skipped.')
@@ -374,7 +380,13 @@ def install_confirmation(confirm_message):
                 else:
                     tkinter.Tk().withdraw()
                     tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
-                    return 1
+                    msfs_native_checkbutton["state"] = "enable"
+                    pmdg_737_checkbutton["state"] = "enable"
+                    pmdg_777_checkbutton["state"] = "enable"
+                    fenix_checkbutton["state"] = "enable"
+                    install_button["state"] = "enable"
+                    exit_button["state"] = "enable"
+                    return
         
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo("Complete", "All installation complete.")
