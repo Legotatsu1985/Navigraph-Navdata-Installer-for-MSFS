@@ -347,7 +347,7 @@ def install_confirmation(confirm_message):
         exit_button["state"] = "disable"
         msfs_native_install()
         pmdg_737_install()
-        pmdg_777_install
+        pmdg_777_install()
         fenix_install()
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo("Complete", "All installation complete.")
