@@ -357,8 +357,8 @@ def install_confirmation(confirm_message):
                     msfs_native_install(msfs_native_nav_rar)
                 else:
                     tkinter.Tk().withdraw()
-                    tkinter.messagebox.showerror('Invalid file selected.')
-                    return
+                    tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
+                    return 1
             else:
                 tkinter.Tk().withdraw()
                 tkinter.messagebox.showinfo('MSFS Native navdata installation will be skipped.')
@@ -373,8 +373,8 @@ def install_confirmation(confirm_message):
                     fenix_install(installer_rar_file)
                 else:
                     tkinter.Tk().withdraw()
-                    tkinter.messagebox.showerror('Invalid file selected.')
-                    return
+                    tkinter.messagebox.showerror('Incorrect file!','Invalid file selected.')
+                    return 1
         
         tkinter.Tk().withdraw()
         tkinter.messagebox.showinfo("Complete", "All installation complete.")
