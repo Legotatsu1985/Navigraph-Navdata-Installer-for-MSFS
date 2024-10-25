@@ -1,6 +1,9 @@
 # Navigraph Navdata Installer for MSFS
  [![Github All Releases](https://img.shields.io/github/downloads/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/total
 )](https://github.com/Legotatsu1985/Navigraph-Navdata-Installer-for-MSFS/releases)
+
+> [!CAUTION]
+> **__OUR SOFTWARE IS CURRENTLY OUT OF DATE!__** Please wait for further updates.
  
  Navigraph Navdata Installer (Decompresser) is automated file copying tool who does not have the Navigraph subscription.
  Currently in development. We will provide a proper release later.
